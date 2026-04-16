@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home -->
+  <url>
+    <loc>https://ebcorp.netlify.app/</loc>
+    <lastmod>2025-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.netlify.app/" />
+  </url>
+
+  <!-- Servicios Eléctricos -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/servicios-electricos.html</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Desarrollo Web -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/desarrollo-web.html</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Proyectos -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/proyectos.html</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Nosotros -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/nosotros.html</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contacto -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/contacto.html</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Cotizador -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/cotizador.html</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog: Norma NEC -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/norma-nec-ecuador-guia-completa.html</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog: Costo Web -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/cuanto-cuesta-sitio-web-ecuador.html</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog: Auditoría Eléctrica -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/auditoria-electrica-industrial-ecuador.html</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog: Posicionamiento Google Ecuador -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/posicionamiento-google-empresas-ecuador.html</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog: Instalación Eléctrica Industrial -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/instalacion-electrica-industrial-ecuador-precios.html</loc>
+    <lastmod>2025-03-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog: UPS y Generadores Ecuador -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/ups-generadores-empresas-ecuador.html</loc>
+    <lastmod>2025-03-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog: Mantenimiento Sitio Web Ecuador -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/mantenimiento-sitio-web-ecuador.html</loc>
+    <lastmod>2025-04-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Precios -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/precios.html</loc>
+    <lastmod>2025-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog index — actualizado frecuentemente -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/</loc>
+    <lastmod>2025-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

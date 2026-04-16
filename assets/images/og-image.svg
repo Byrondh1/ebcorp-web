@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1117"/>
+      <stop offset="50%" stop-color="#1A2B5F"/>
+      <stop offset="100%" stop-color="#0F1A3D"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#F5A623"/>
+    </linearGradient>
+    <linearGradient id="yellow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5A623"/>
+      <stop offset="100%" stop-color="#E08A00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.04" stroke="#00D4FF" stroke-width="0.5" fill="none">
+    <line x1="0" y1="60" x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="480" x2="1200" y2="480"/>
+    <line x1="0" y1="540" x2="1200" y2="540"/>
+    <line x1="60" y1="0" x2="60" y2="630"/>
+    <line x1="120" y1="0" x2="120" y2="630"/>
+    <line x1="180" y1="0" x2="180" y2="630"/>
+    <line x1="240" y1="0" x2="240" y2="630"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="360" y1="0" x2="360" y2="630"/>
+    <line x1="420" y1="0" x2="420" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="540" y1="0" x2="540" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="660" y1="0" x2="660" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/>
+    <line x1="780" y1="0" x2="780" y2="630"/>
+    <line x1="840" y1="0" x2="840" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/>
+    <line x1="1020" y1="0" x2="1020" y2="630"/>
+    <line x1="1080" y1="0" x2="1080" y2="630"/>
+    <line x1="1140" y1="0" x2="1140" y2="630"/>
+  </g>
+
+  <!-- Glow -->
+  <circle cx="600" cy="280" r="250" fill="rgba(26,43,95,0.35)"/>
+
+  <!-- Logo icon background -->
+  <rect x="540" y="120" width="56" height="56" rx="14" fill="url(#yellow)"/>
+  <!-- Lightning bolt in logo -->
+  <path d="M574 133 L560 155 H570 L564 171 L578 149 H568 Z" fill="#0D1117"/>
+
+  <!-- "EB Corp" text -->
+  <text x="600" y="225" font-family="Inter, system-ui, sans-serif" font-size="52" font-weight="800" fill="white" text-anchor="middle" letter-spacing="-1">
+    EB <tspan fill="#00D4FF">Corp</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="290" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="300" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">
+    Una empresa. Dos especialidades.
+  </text>
+
+  <!-- Accent line -->
+  <rect x="400" y="315" width="400" height="2" rx="1" fill="url(#accent)" opacity="0.4"/>
+
+  <!-- Service pills -->
+  <!-- Electrical pill -->
+  <rect x="310" y="360" width="260" height="48" rx="24" fill="rgba(245,166,35,0.12)" stroke="rgba(245,166,35,0.3)" stroke-width="1"/>
+  <text x="440" y="390" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#F5A623" text-anchor="middle">
+    Ingenieria Electrica
+  </text>
+
+  <!-- Web pill -->
+  <rect x="630" y="360" width="260" height="48" rx="24" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.25)" stroke-width="1"/>
+  <text x="760" y="390" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#00D4FF" text-anchor="middle">
+    Desarrollo Web
+  </text>
+
+  <!-- Stats -->
+  <text x="340" y="470" font-family="Space Grotesk, monospace" font-size="28" font-weight="700" fill="white" text-anchor="middle">
+    +50
+  </text>
+  <text x="340" y="495" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.35)" text-anchor="middle">
+    PROYECTOS
+  </text>
+
+  <text x="600" y="470" font-family="Space Grotesk, monospace" font-size="28" font-weight="700" fill="white" text-anchor="middle">
+    100%
+  </text>
+  <text x="600" y="495" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.35)" text-anchor="middle">
+    SATISFACCION
+  </text>
+
+  <text x="860" y="470" font-family="Space Grotesk, monospace" font-size="28" font-weight="700" fill="white" text-anchor="middle">
+    24/7
+  </text>
+  <text x="860" y="495" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.35)" text-anchor="middle">
+    SOPORTE
+  </text>
+
+  <!-- Location -->
+  <text x="600" y="570" font-family="Inter, sans-serif" font-size="14" font-weight="500" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="2">
+    QUITO, ECUADOR  ·  ebcorp.netlify.app
+  </text>
+
+  <!-- Border accent -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)" opacity="0.5"/>
+</svg>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto | EB Corp — Quito, Ecuador</title>
+  <meta name="description" content="Contacta a EB Corp para cotizar proyectos eléctricos o desarrollo web. WhatsApp: +593 961 699 925. Quito, Ecuador. Respuesta en menos de 2 horas." />
+  <link rel="canonical" href="https://ebcorp.netlify.app/pages/contacto.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ebcorp.netlify.app/pages/contacto.html" />
+  <meta property="og:title" content="Contacto | EB Corp — Respuesta en menos de 2 horas" />
+  <meta property="og:description" content="¿Tienes un proyecto eléctrico o web? Escríbenos por WhatsApp (+593 961 699 925) o completa el formulario. Quito, Ecuador. Cotización gratuita." />
+  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.svg" />
+  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Analytics 4 — reemplazar G-RF6SH8ZWHR con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RF6SH8ZWHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RF6SH8ZWHR');
+    // Evento conversión: envío de formulario de contacto
+    document.addEventListener('submit', function(e) {
+      if (e.target.id === 'contactForm') {
+        gtag('event', 'form_submit', { event_category: 'Lead', event_label: 'contacto-form' });
+      }
+    });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <header class="nav-header scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+        <span class="logo-text">EB <span class="logo-accent">Corp</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html#servicios">Servicios</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="precios.html">Precios</a>
+        <a href="cotizador.html">Cotizador</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="contacto.html" style="color:white;">Contacto</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20me%20interesa%20cotizar%20un%20servicio"
+           class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Contact Hero -->
+    <section class="page-hero" style="min-height: 360px; background: var(--color-dark);">
+      <div class="page-hero-bg" aria-hidden="true"></div>
+      <div class="container page-hero-content">
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+          <a href="../index.html">Inicio</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Contacto</span>
+        </nav>
+        <h1>Hablemos de tu proyecto</h1>
+        <p>Respuesta garantizada en menos de 2 horas durante horario hábil.<br />Consulta inicial <strong>completamente gratuita</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section section-padding" style="background: var(--color-gray-100);">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- Contact Info -->
+          <div class="contact-info" data-aos="fade-right">
+            <h2>Canales de contacto</h2>
+            <p>Elige la vía que prefieras. Estamos disponibles para resolver tus dudas y preparar una propuesta personalizada.</p>
+
+            <div class="contact-channels">
+              <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20quiero%20cotizar%20un%20proyecto"
+                 class="contact-channel contact-channel-whatsapp" target="_blank" rel="noopener">
+                <div class="channel-icon">
+                  <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="channel-info">
+                  <strong>WhatsApp (preferido)</strong>
+                  <span>+593 961 699 925</span>
+                  <em>Respuesta inmediata</em>
+                </div>
+                <i class="fas fa-arrow-right channel-arrow"></i>
+              </a>
+
+              <a href="mailto:contacto@ebcorp.ec" class="contact-channel contact-channel-email">
+                <div class="channel-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="channel-info">
+                  <strong>Correo electrónico</strong>
+                  <span>contacto@ebcorp.ec</span>
+                  <em>Respuesta en 2 horas</em>
+                </div>
+                <i class="fas fa-arrow-right channel-arrow"></i>
+              </a>
+
+              <a href="https://www.instagram.com/eb_corp1" class="contact-channel contact-channel-instagram"
+                 target="_blank" rel="noopener">
+                <div class="channel-icon">
+                  <i class="fab fa-instagram"></i>
+                </div>
+                <div class="channel-info">
+                  <strong>Instagram</strong>
+                  <span>@eb_corp1</span>
+                  <em>DM abiertos</em>
+                </div>
+                <i class="fas fa-arrow-right channel-arrow"></i>
+              </a>
+            </div>
+
+            <div class="contact-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong>Quito, Ecuador</strong>
+                <span>Atención a nivel nacional</span>
+              </div>
+            </div>
+
+            <div class="contact-hours">
+              <div class="hours-row">
+                <span>Lunes – Viernes</span>
+                <strong>08:00 – 18:00</strong>
+              </div>
+              <div class="hours-row">
+                <span>Sábados</span>
+                <strong>09:00 – 14:00</strong>
+              </div>
+              <div class="hours-row">
+                <span>Emergencias eléctricas</span>
+                <strong class="hours-247">24 / 7</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrap" data-aos="fade-left">
+            <h3>Cuéntanos tu proyecto</h3>
+            <p>Completa el formulario y te contactamos en menos de 2 horas.</p>
+
+            <form class="contact-form" id="contactForm"
+                  name="contacto-ebcorp"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  novalidate>
+              <!-- Netlify hidden fields -->
+              <input type="hidden" name="form-name" value="contacto-ebcorp" />
+              <p style="display:none;">
+                <label>No llenar: <input name="bot-field" /></label>
+              </p>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nombre">Nombre completo *</label>
+                  <input type="text" id="nombre" name="nombre" placeholder="Ej: Carlos Rodríguez" required />
+                </div>
+                <div class="form-group">
+                  <label for="empresa">Empresa</label>
+                  <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Correo electrónico *</label>
+                  <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
+                </div>
+                <div class="form-group">
+                  <label for="telefono">WhatsApp / Teléfono</label>
+                  <input type="tel" id="telefono" name="telefono" placeholder="+593 9XX XXX XXX" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="servicio">Tipo de servicio de interés *</label>
+                <select id="servicio" name="servicio" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="electrico">Ingeniería Eléctrica Industrial</option>
+                  <option value="web-corporativo">Sitio Web Corporativo</option>
+                  <option value="web-ecommerce">Tienda Online (E-commerce)</option>
+                  <option value="ambos">Eléctrico + Web (Proyecto integral)</option>
+                  <option value="seo">SEO y Posicionamiento</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mensaje">Describe tu proyecto *</label>
+                <textarea id="mensaje" name="mensaje" rows="5"
+                  placeholder="Cuéntanos qué necesitas: tipo de proyecto, dimensiones, ubicación, plazos, etc."
+                  required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg form-submit">
+                <i class="fas fa-paper-plane"></i> Enviar consulta
+              </button>
+
+              <p class="form-note">
+                <i class="fas fa-lock"></i>
+                Tu información es confidencial y no será compartida con terceros.
+                Responderemos por el canal de tu preferencia.
+              </p>
+            </form>
+
+            <div class="form-success" id="formSuccess" style="display:none;">
+              <i class="fas fa-check-circle"></i>
+              <h4>¡Mensaje recibido!</h4>
+              <p>Te contactaremos en menos de 2 horas. Para respuesta inmediata, escríbenos por WhatsApp.</p>
+              <a href="https://wa.me/593961699925" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Ir a WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick CTA WhatsApp -->
+    <section class="section-padding" style="background: #0d1117; text-align:center;">
+      <div class="container">
+        <div data-aos="fade-up">
+          <p style="color:rgba(255,255,255,0.4); font-size:0.875rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:1rem;">
+            VÍA MÁS RÁPIDA
+          </p>
+          <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20quiero%20cotizar%20un%20proyecto"
+             class="btn btn-whatsapp btn-xl" target="_blank" rel="noopener"
+             style="margin:0 auto; display:inline-flex;">
+            <i class="fab fa-whatsapp"></i>
+            <span>
+              <strong>Escríbenos directamente por WhatsApp</strong>
+              <small>+593 961 699 925 · Respuesta inmediata</small>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding-top:0; justify-content:center; gap:1rem;">
+        <p>&copy; 2025 EB Corp — <a href="../index.html" style="color:rgba(255,255,255,0.4);">ebcorp.netlify.app</a></p>
+        <p>Quito, Ecuador &nbsp;·&nbsp; <a href="https://wa.me/593961699925" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.4);">+593 961 699 925</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20necesito%20información"
+     class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-tooltip">Contacto directo</span>
+  </a>
+
+  <script src="../js/main.js" defer></script>
+  <script>
+    // ── Client-side form validation ─────────────────────────────────────────
+    function validateField(input, rules) {
+      const group = input.closest('.form-group');
+      const existing = group.querySelector('.field-error');
+      if (existing) existing.remove();
+      group.classList.remove('has-error');
+
+      let error = null;
+      const val = input.value.trim();
+
+      if (rules.required && !val) {
+        error = 'Este campo es obligatorio';
+      } else if (rules.email && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        error = 'Ingresa un correo válido';
+      } else if (rules.minLength && val && val.length < rules.minLength) {
+        error = `Mínimo ${rules.minLength} caracteres`;
+      } else if (rules.select && !val) {
+        error = 'Selecciona una opción';
+      }
+
+      if (error) {
+        group.classList.add('has-error');
+        const msg = document.createElement('span');
+        msg.className = 'field-error';
+        msg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${error}`;
+        group.appendChild(msg);
+        return false;
+      }
+      return true;
+    }
+
+    // Live validation on blur
+    document.querySelectorAll('#contactForm [required]').forEach(el => {
+      el.addEventListener('blur', function() {
+        const rules = { required: true };
+        if (el.type === 'email') rules.email = true;
+        if (el.tagName === 'SELECT') rules.select = true;
+        if (el.tagName === 'TEXTAREA') rules.minLength = 20;
+        validateField(el, rules);
+      });
+      // Clear error on input
+      el.addEventListener('input', function() {
+        const group = el.closest('.form-group');
+        group.classList.remove('has-error');
+        const err = group.querySelector('.field-error');
+        if (err) err.remove();
+      });
+    });
+
+    document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+
+      // Validate all required fields
+      const nombre   = document.getElementById('nombre');
+      const email    = document.getElementById('email');
+      const servicio = document.getElementById('servicio');
+      const mensaje  = document.getElementById('mensaje');
+
+      const v1 = validateField(nombre,   { required: true });
+      const v2 = validateField(email,    { required: true, email: true });
+      const v3 = validateField(servicio, { required: true, select: true });
+      const v4 = validateField(mensaje,  { required: true, minLength: 20 });
+
+      if (!v1 || !v2 || !v3 || !v4) {
+        // Scroll to first error
+        const firstError = form.querySelector('.has-error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const submitBtn = form.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando…';
+
+      const empresa  = document.getElementById('empresa').value.trim();
+      const servicioLabel = {
+        'electrico':       'Ingeniería Eléctrica',
+        'web-corporativo': 'Sitio Web Corporativo',
+        'web-ecommerce':   'Tienda Online',
+        'ambos':           'Proyecto Integral (Eléctrico + Web)',
+        'seo':             'SEO',
+        'otro':            'Otro'
+      }[servicio.value] || servicio.value;
+
+      // 1. Submit to Netlify Forms (background — no page reload)
+      try {
+        const data = new FormData(form);
+        await fetch('/', { method: 'POST', body: data });
+      } catch (_) { /* silently fail — WhatsApp is the main channel */ }
+
+      // 2. Show success state
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'flex';
+
+      // 3. Open WhatsApp with pre-filled message
+      const text = encodeURIComponent(
+        `Hola EB Corp, soy ${nombre.value.trim()}${empresa ? ' de ' + empresa : ''}.\n` +
+        `Me interesa: ${servicioLabel}.\n\n` +
+        `${mensaje.value.trim()}`
+      );
+      setTimeout(() => {
+        window.open(`https://wa.me/593961699925?text=${text}`, '_blank');
+      }, 800);
+    });
+  </script>
+</body>
+</html>

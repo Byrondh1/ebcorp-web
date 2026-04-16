@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Bloquear archivos de configuración
+Disallow: /BLUEPRINT.md
+
+Sitemap: https://ebcorp.netlify.app/sitemap.xml

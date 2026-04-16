@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics 4 — carga condicional según consentimiento de cookies -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    function loadGA4() {
+      if (window._ga4Loaded) return;
+      window._ga4Loaded = true;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-RF6SH8ZWHR';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-RF6SH8ZWHR', {
+        page_title: document.title,
+        page_location: window.location.href,
+        anonymize_ip: true
+      });
+    }
+
+    // Cargar GA4 solo si hay consentimiento previo
+    if (localStorage.getItem('eb_cookie_consent') === 'accepted') {
+      loadGA4();
+    }
+
+    // Evento: clic en WhatsApp (solo si GA4 activo)
+    document.addEventListener('click', function(e) {
+      const el = e.target.closest('a[href*="wa.me"]');
+      if (el && window._ga4Loaded) {
+        gtag('event', 'whatsapp_click', { event_category: 'CTA', event_label: el.innerText.trim().slice(0,50) });
+      }
+    });
+  </script>
+
+  <!-- SEO Primary -->
+  <title>EB Corp — Ingeniería Eléctrica y Desarrollo Web en Quito, Ecuador</title>
+  <meta name="description" content="EB Corp combina ingeniería eléctrica certificada (NEC/IEC) y desarrollo web profesional. Una empresa, dos especialidades. Quito, Ecuador. Soporte 24/7." />
+  <meta name="keywords" content="ingeniería eléctrica quito, instalaciones eléctricas industriales, desarrollo web ecuador, diseño web quito, electricista industrial ecuador" />
+  <meta name="author" content="EB Corp — Electrical Business Corporation" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ebcorp.netlify.app/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ebcorp.netlify.app/" />
+  <meta property="og:title" content="EB Corp — Una empresa. Dos especialidades." />
+  <meta property="og:description" content="Ingeniería eléctrica industrial y desarrollo web profesional en Quito, Ecuador. +50 proyectos, 100% clientes satisfechos." />
+  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.svg" />
+  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_EC" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "EB Corp — Electrical Business Corporation",
+    "description": "Ingeniería eléctrica industrial y desarrollo web profesional en Quito, Ecuador.",
+    "url": "https://ebcorp.netlify.app",
+    "telephone": "+593961699925",
+    "email": "contacto@ebcorp.ec",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Quito",
+      "addressCountry": "EC"
+    },
+    "sameAs": ["https://www.instagram.com/eb_corp1"],
+    "serviceType": ["Ingeniería Eléctrica", "Desarrollo Web"],
+    "areaServed": "Ecuador",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "47",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Carlos M." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "EB Corp modernizó toda la instalación eléctrica de nuestra planta en tiempo récord. Cumplieron con la norma NEC y el trabajo fue impecable. Totalmente recomendados.",
+        "datePublished": "2025-02-10"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Ana P." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Nos hicieron el sitio web en tiempo y forma. Lo mejor es que entienden el sector industrial. Las consultas aumentaron notablemente.",
+        "datePublished": "2025-01-22"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Roberto V." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "El equipo de EB Corp es profesional, puntual y siempre disponible. El soporte 24/7 marca la diferencia.",
+        "datePublished": "2025-03-05"
+      }
+    ]
+  }
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Trabajan con empresas de cualquier tamaño?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Atendemos desde pequeños negocios hasta plantas industriales grandes. Cada proyecto se dimensiona según las necesidades reales del cliente." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo toma un proyecto eléctrico típico?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Una auditoría eléctrica puede completarse en 1-2 días, una instalación industrial pequeña en 1-2 semanas, y proyectos grandes en 4-8 semanas." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta un sitio web profesional?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Desde $300 USD para una landing page hasta $3,000+ USD para un e-commerce completo." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cumplen con las normas NEC e IEC en Ecuador?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Todos nuestros proyectos eléctricos cumplen la Normativa Eléctrica Ecuatoriana (NEC) y los estándares internacionales IEC. Entregamos planos certificados y certificados de conformidad." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Ofrecen soporte después de entregar el proyecto?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Soporte de emergencia 24/7 para eléctrico y 1-3 meses de soporte técnico para proyectos web." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden hacer un proyecto eléctrico y web al mismo tiempo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí, esa es nuestra especialidad. Los proyectos integrales tienen un solo punto de contacto, cronograma coordinado y mejores condiciones de precio." }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons (deferred — not critical for first paint) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
+
+  <!-- Styles -->
+  <link rel="preload" href="css/styles.css" as="style" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Favicon + PWA -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1A2B5F" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="EB Corp" />
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header class="nav-header" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo" aria-label="EB Corp inicio" style="display:flex;align-items:center;gap:10px;font-family:'Courier New',Courier,monospace;font-size:22px;font-weight:700;letter-spacing:4px;text-decoration:none;">
+        <img src="assets/images/corona.svg" alt="" aria-hidden="true" height="45" style="display:block;" />
+        <span style="color:#FFFFFF;">E</span><span style="color:#FFE01B;">B</span><span style="color:#FFFFFF;"> Corp</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="pages/precios.html">Precios</a>
+        <a href="pages/cotizador.html">Cotizador</a>
+        <a href="pages/blog/">Blog</a>
+        <a href="pages/contacto.html">Contacto</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20me%20interesa%20cotizar%20un%20servicio"
+           class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO — Objetivo: Impacto inmediato + propuesta de valor clara
+         Psicología: Claridad > originalidad. El visitante debe entender
+         en 5 segundos qué hace EB Corp y por qué importa.
+    ============================================================ -->
+    <section class="hero" id="inicio" aria-labelledby="hero-heading">
+      <div class="hero-bg-grid" aria-hidden="true"></div>
+      <canvas id="lightningCanvas" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+      <div class="hero-particles" aria-hidden="true" id="heroParticles"></div>
+
+      <div class="container hero-content">
+        <h1 id="hero-heading" data-aos="fade-up" data-aos-delay="100" style="text-align:center;margin-bottom:12px;font-family:'Courier New',Courier,monospace;font-size:clamp(3.5rem,12vw,6rem);font-weight:700;letter-spacing:4px;line-height:1.1;">
+          <span style="color:#FFFFFF;">E</span><span style="color:#FFE01B;">B</span><span style="color:#FFFFFF;"> Corp</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="150" style="text-align:center;font-family:'Rajdhani','Arial Narrow',sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.3em;color:#FFE01B;margin:0 0 24px;">
+          ELECTRICAL BUSINESS CORPORATION
+        </p>
+
+        <p class="hero-sub" data-aos="fade-up" data-aos-delay="200">
+          Ingeniería eléctrica de alto nivel y desarrollo web profesional.<br class="break-desktop" />
+          Potenciamos empresas e industrias en el mundo físico y digital.
+        </p>
+
+        <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="300">
+          <a href="pages/cotizador.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-calculator"></i> Cotizar proyecto
+          </a>
+          <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20quiero%20cotizar%20un%20proyecto"
+             class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> WhatsApp directo
+          </a>
+        </div>
+
+        <div class="hero-split" data-aos="fade-up" data-aos-delay="400" aria-label="Nuestras dos especialidades">
+          <div class="hero-split-card">
+            <div class="hero-split-icon electrical">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <span>Ingeniería Eléctrica</span>
+          </div>
+          <div class="hero-split-divider" aria-hidden="true">+</div>
+          <div class="hero-split-card">
+            <div class="hero-split-icon digital">
+              <i class="fas fa-code"></i>
+            </div>
+            <span>Desarrollo Web</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SOCIAL PROOF — Objetivo: Eliminar la duda inicial
+         Psicología: Los números y la certeza reducen la percepción de riesgo.
+         Se muestran antes de los servicios para validar credibilidad.
+    ============================================================ -->
+    <section class="stats-bar" aria-labelledby="stats-heading">
+      <div class="container">
+        <p class="sr-only" id="stats-heading">Nuestros resultados</p>
+        <div class="stats-grid">
+          <div class="stat-item" data-aos="fade-up">
+            <span class="stat-number" data-count="50">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Proyectos eléctricos</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+            <span class="stat-number" data-count="100">0</span><span class="stat-suffix">%</span>
+            <span class="stat-label">Clientes satisfechos</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+            <span class="stat-number" data-count="2">0</span>
+            <span class="stat-label">Áreas de especialidad</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+            <span class="stat-number">24</span><span class="stat-suffix">/7</span>
+            <span class="stat-label">Soporte técnico</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PAIN POINTS — Objetivo: Crear resonancia emocional
+         Psicología: El cliente se reconoce en el problema → aumenta
+         la relevancia percibida de la solución.
+    ============================================================ -->
+    <section class="pain-points section-padding" id="problemas" aria-labelledby="pain-heading">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">El problema real</span>
+          <h2 id="pain-heading">¿Te identificas con alguno de estos escenarios?</h2>
+          <p class="section-desc">Las empresas en Ecuador enfrentan dos desafíos críticos que suelen resolverse por separado — y mal.</p>
+        </div>
+
+        <div class="pain-grid">
+          <div class="pain-card pain-electrical" data-aos="fade-right">
+            <div class="pain-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3>Infraestructura eléctrica deficiente</h3>
+            <ul class="pain-list">
+              <li><i class="fas fa-times-circle"></i> Cortes eléctricos que detienen tu producción</li>
+              <li><i class="fas fa-times-circle"></i> Instalaciones que no cumplen normas NEC/IEC</li>
+              <li><i class="fas fa-times-circle"></i> Equipos dañados por sobretensiones</li>
+              <li><i class="fas fa-times-circle"></i> Multas por incumplimiento regulatorio</li>
+              <li><i class="fas fa-times-circle"></i> Riesgo de incendios eléctricos</li>
+            </ul>
+          </div>
+
+          <div class="pain-center" data-aos="fade-up">
+            <div class="pain-center-icon"><i class="fas fa-building"></i></div>
+            <p>Tu empresa merece infraestructura sólida <strong>y</strong> presencia digital competitiva</p>
+          </div>
+
+          <div class="pain-card pain-digital" data-aos="fade-left">
+            <div class="pain-icon"><i class="fas fa-globe-americas"></i></div>
+            <h3>Ausencia digital competitiva</h3>
+            <ul class="pain-list">
+              <li><i class="fas fa-times-circle"></i> Clientes que no te encuentran en Google</li>
+              <li><i class="fas fa-times-circle"></i> Web desactualizada que genera desconfianza</li>
+              <li><i class="fas fa-times-circle"></i> Sin tienda online perdiendo ventas 24/7</li>
+              <li><i class="fas fa-times-circle"></i> Competencia con mejor presencia digital</li>
+              <li><i class="fas fa-times-circle"></i> Sin seguimiento de leads ni métricas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SOLUTION / PUV — Objetivo: Posicionar la propuesta única
+         Psicología: After the pain comes the relief. El puente entre
+         el problema y la solución establece autoridad y diferenciación.
+    ============================================================ -->
+    <section class="solution section-padding" id="nosotros" aria-labelledby="solution-heading">
+      <div class="container">
+        <div class="solution-inner">
+          <div class="solution-content" data-aos="fade-right">
+            <span class="section-tag">La solución</span>
+            <h2 id="solution-heading">El puente entre el mundo industrial y el mundo digital</h2>
+            <p class="solution-desc">
+              EB Corp nació de una visión única: un ingeniero eléctrico con dominio digital que entiende el lenguaje de ambos mundos. Mientras otras empresas te obligan a contratar a dos proveedores distintos, nosotros lo resolvemos todo.
+            </p>
+            <ul class="solution-list">
+              <li>
+                <span class="solution-check"><i class="fas fa-check"></i></span>
+                <span>Un solo punto de contacto para electricidad y web</span>
+              </li>
+              <li>
+                <span class="solution-check"><i class="fas fa-check"></i></span>
+                <span>Cumplimiento total de normativas NEC e IEC</span>
+              </li>
+              <li>
+                <span class="solution-check"><i class="fas fa-check"></i></span>
+                <span>Webs industriales con lenguaje técnico real</span>
+              </li>
+              <li>
+                <span class="solution-check"><i class="fas fa-check"></i></span>
+                <span>Soporte 24/7 y acompañamiento post-entrega</span>
+              </li>
+            </ul>
+            <a href="https://wa.me/593961699925?text=Quiero%20conocer%20más%20sobre%20EB%20Corp"
+               class="btn btn-primary" target="_blank" rel="noopener">
+              Conocer más <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="solution-visual" data-aos="fade-left">
+            <div class="solution-diagram" aria-label="Diagrama: EB Corp conecta ingeniería eléctrica con desarrollo web">
+              <div class="diagram-node node-electrical">
+                <i class="fas fa-industry"></i>
+                <span>Ingeniería<br/>Eléctrica</span>
+              </div>
+              <div class="diagram-bridge">
+                <div class="bridge-line"></div>
+                <div class="bridge-center">
+                  <span class="logo-icon-sm"><i class="fas fa-bolt"></i></span>
+                  <strong>EB Corp</strong>
+                </div>
+                <div class="bridge-line"></div>
+              </div>
+              <div class="diagram-node node-digital">
+                <i class="fas fa-laptop-code"></i>
+                <span>Desarrollo<br/>Web</span>
+              </div>
+              <div class="diagram-result">
+                <i class="fas fa-arrow-down"></i>
+                <div class="result-box">
+                  <i class="fas fa-trophy"></i>
+                  <span>Empresa más competitiva</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES — Objetivo: Presentar claramente qué se ofrece
+         Psicología: La especificidad genera confianza. Los clientes
+         deben ver exactamente lo que reciben, sin ambigüedades.
+    ============================================================ -->
+    <section class="services section-padding" id="servicios" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Nuestros servicios</span>
+          <h2 id="services-heading">Dos especialidades. Una empresa.</h2>
+          <p class="section-desc">Soluciones técnicas completas para empresas industriales y comerciales en Ecuador.</p>
+        </div>
+
+        <div class="services-dual">
+          <!-- Electrical Services -->
+          <div class="service-pillar pillar-electrical" data-aos="fade-right">
+            <div class="pillar-header">
+              <div class="pillar-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <div>
+                <h3>Ingeniería Eléctrica</h3>
+                <p>Industrial &amp; Comercial</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-item">
+                <i class="fas fa-plug"></i>
+                <div>
+                  <strong>Instalaciones eléctricas industriales</strong>
+                  <span>Baja, media y alta tensión certificadas</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-search"></i>
+                <div>
+                  <strong>Auditorías y diagnóstico eléctrico</strong>
+                  <span>Detección de fallas, termografía</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                  <strong>Tableros de control y protección</strong>
+                  <span>Diseño y montaje de tableros MCC</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-solar-panel"></i>
+                <div>
+                  <strong>Sistemas de respaldo</strong>
+                  <span>UPS, generadores, transferencias</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-certificate"></i>
+                <div>
+                  <strong>Cumplimiento normativo</strong>
+                  <span>Proyectos bajo NEC y normas IEC</span>
+                </div>
+              </div>
+            </div>
+            <a href="pages/servicios-electricos.html" class="btn btn-electrical">
+              Ver servicios eléctricos <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- Web Development Services -->
+          <div class="service-pillar pillar-digital" data-aos="fade-left">
+            <div class="pillar-header">
+              <div class="pillar-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <div>
+                <h3>Desarrollo Web</h3>
+                <p>Profesional &amp; Optimizado</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-item">
+                <i class="fas fa-desktop"></i>
+                <div>
+                  <strong>Sitios web corporativos</strong>
+                  <span>Diseño moderno, rápido y optimizado</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-shopping-cart"></i>
+                <div>
+                  <strong>Tiendas en línea (E-commerce)</strong>
+                  <span>Ventas 24/7 con pagos integrados</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                  <strong>SEO y posicionamiento</strong>
+                  <span>Aparecer en Google cuando te buscan</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-mobile-alt"></i>
+                <div>
+                  <strong>Diseño responsive</strong>
+                  <span>Perfecto en móvil, tablet y escritorio</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-headset"></i>
+                <div>
+                  <strong>Mantenimiento y soporte</strong>
+                  <span>Actualizaciones, seguridad y hosting</span>
+                </div>
+              </div>
+            </div>
+            <a href="pages/desarrollo-web.html" class="btn btn-digital">
+              Ver servicios web <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESS — Objetivo: Reducir la fricción de inicio
+         Psicología: El miedo a lo desconocido paraliza la acción.
+         Mostrar el proceso simple elimina esa barrera.
+    ============================================================ -->
+    <section class="process section-padding" id="proceso" aria-labelledby="process-heading">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Cómo trabajamos</span>
+          <h2 id="process-heading">Simple, claro y sin sorpresas</h2>
+          <p class="section-desc">Tres pasos para transformar tu empresa — sin contratar múltiples proveedores.</p>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step" data-aos="fade-up" data-aos-delay="0">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-comments"></i></div>
+              <h3>Consulta inicial gratuita</h3>
+              <p>Nos cuentas tu proyecto (eléctrico, web o ambos). Sin compromiso, sin costo.</p>
+            </div>
+          </div>
+          <div class="process-connector" aria-hidden="true"></div>
+          <div class="process-step" data-aos="fade-up" data-aos-delay="150">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+              <h3>Propuesta técnica y cotización</h3>
+              <p>Recibís un presupuesto detallado, cronograma y especificaciones técnicas claras.</p>
+            </div>
+          </div>
+          <div class="process-connector" aria-hidden="true"></div>
+          <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-rocket"></i></div>
+              <h3>Ejecución y entrega</h3>
+              <p>Implementamos, probamos y entregamos con soporte post-proyecto incluido.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS / PORTFOLIO — Objetivo: Demostrar resultados reales
+         Psicología: La prueba social visual convierte mejor que las
+         promesas. Ver proyectos reduce el riesgo percibido.
+    ============================================================ -->
+    <section class="projects section-padding" id="proyectos" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Proyectos realizados</span>
+          <h2 id="projects-heading">+50 proyectos. 100% clientes satisfechos.</h2>
+          <p class="section-desc">Desde instalaciones eléctricas industriales hasta sitios web de alto impacto.</p>
+        </div>
+
+        <div class="projects-tabs" data-aos="fade-up">
+          <button class="tab-btn active" data-tab="todos" aria-pressed="true">Todos</button>
+          <button class="tab-btn" data-tab="electrico" aria-pressed="false">Eléctrico</button>
+          <button class="tab-btn" data-tab="web" aria-pressed="false">Web</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <div class="project-card" data-category="electrico" data-aos="fade-up">
+            <div class="project-img project-img-1" data-label="Instalación Industrial — 400A">
+              <div class="project-overlay">
+                <span class="project-tag">Eléctrico</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h4>Instalación Industrial — Fábrica Textil</h4>
+              <p>Tablero de distribución 400A + instalación trifásica completa bajo normativa NEC</p>
+              <div class="project-meta">
+                <span><i class="fas fa-map-marker-alt"></i> Quito Norte</span>
+                <span><i class="fas fa-calendar"></i> 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-img project-img-2" data-label="E-commerce — 500+ productos">
+              <div class="project-overlay">
+                <span class="project-tag">Web</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h4>E-commerce — Tienda Industrial</h4>
+              <p>Plataforma de ventas online con catálogo de +500 productos y pagos integrados</p>
+              <div class="project-meta">
+                <span><i class="fas fa-map-marker-alt"></i> Quito Sur</span>
+                <span><i class="fas fa-calendar"></i> 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="electrico" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-img project-img-3" data-label="UPS 80 kVA + ATS">
+              <div class="project-overlay">
+                <span class="project-tag">Eléctrico</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h4>Sistema de Respaldo — Centro Comercial</h4>
+              <p>UPS industrial 80 kVA + transferencia automática ATS para 3 pisos comerciales</p>
+              <div class="project-meta">
+                <span><i class="fas fa-map-marker-alt"></i> Valle de los Chillos</span>
+                <span><i class="fas fa-calendar"></i> 2023</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-img project-img-4" data-label="Web Corporativa + SEO">
+              <div class="project-overlay">
+                <span class="project-tag">Web</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h4>Web Corporativa — Constructora</h4>
+              <p>Sitio con galería de proyectos, formulario de cotización y SEO local optimizado</p>
+              <div class="project-meta">
+                <span><i class="fas fa-map-marker-alt"></i> Quito Centro</span>
+                <span><i class="fas fa-calendar"></i> 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="electrico" data-aos="fade-up">
+            <div class="project-img project-img-5" data-label="Auditoría Termográfica">
+              <div class="project-overlay">
+                <span class="project-tag">Eléctrico</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h4>Auditoría Eléctrica — Planta Alimentaria</h4>
+              <p>Diagnóstico completo con termografía + plan de mantenimiento preventivo anual</p>
+              <div class="project-meta">
+                <span><i class="fas fa-map-marker-alt"></i> Sangolquí</span>
+                <span><i class="fas fa-calendar"></i> 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card project-card-dual" data-category="todos" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-img project-img-dual" data-label="Eléctrico + Web — Proyecto integral">
+              <div class="project-overlay">
+                <span class="project-tag project-tag-dual">Eléctrico + Web</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h4>Proyecto Integral — Empresa Metalmecánica</h4>
+              <p>Modernización eléctrica completa + nuevo sitio web corporativo con cotizador online</p>
+              <div class="project-meta">
+                <span><i class="fas fa-map-marker-alt"></i> Quito Industrial</span>
+                <span><i class="fas fa-star"></i> Proyecto estrella</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="projects-cta" data-aos="fade-up">
+          <a href="pages/proyectos.html" class="btn btn-outline">
+            Ver todos los proyectos <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIALS — Objetivo: Validación social final
+         Psicología: Las palabras de otros convencen más que las propias.
+    ============================================================ -->
+    <section class="testimonials section-padding" id="testimonios" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Lo que dicen nuestros clientes</span>
+          <h2 id="testimonials-heading">Resultados que hablan por sí solos</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card" data-aos="fade-up">
+            <div class="testimonial-stars" aria-label="5 estrellas">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p>"EB Corp modernizó toda la instalación eléctrica de nuestra planta en tiempo récord. Cumplieron con la norma NEC y el trabajo fue impecable. Totalmente recomendados."</p>
+            <footer>
+              <strong>Carlos M.</strong>
+              <span>Gerente de Planta — Industria Textil, Quito</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-stars" aria-label="5 estrellas">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p>"Nos hicieron el sitio web en tiempo y forma. Lo mejor es que entienden el sector industrial, entonces el lenguaje técnico está perfecto. Las consultas aumentaron notablemente."</p>
+            <footer>
+              <strong>Ana P.</strong>
+              <span>Directora Comercial — Empresa Metalmecánica, Ecuador</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-stars" aria-label="5 estrellas">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p>"Lo que más valoro es tener un solo proveedor para dos necesidades críticas. El equipo de EB Corp es profesional, puntual y siempre disponible. El soporte 24/7 marca la diferencia."</p>
+            <footer>
+              <strong>Roberto V.</strong>
+              <span>Dueño — Constructora, Quito Norte</span>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FAQ — Objetivo: Resolver objeciones finales + SEO
+         Psicología: Las preguntas frecuentes eliminan las últimas
+         dudas antes de la conversión y aportan contenido rico para SEO.
+    ============================================================ -->
+    <section class="faq section-padding" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Preguntas frecuentes</span>
+          <h2 id="faq-heading">Resolvemos tus dudas</h2>
+          <p class="section-desc">Las preguntas que más nos hacen antes de iniciar un proyecto.</p>
+        </div>
+
+        <div class="faq-grid" data-aos="fade-up">
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Trabajan con empresas de cualquier tamaño?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Sí. Atendemos desde pequeños negocios y locales comerciales hasta plantas industriales grandes. Cada proyecto se dimensiona según las necesidades reales del cliente, no existe un mínimo de inversión para trabajar con nosotros.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Cuánto tiempo toma un proyecto eléctrico típico?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Depende del alcance: una auditoría eléctrica puede completarse en 1-2 días, una instalación industrial pequeña en 1-2 semanas, y proyectos grandes en 4-8 semanas. Siempre entregamos un cronograma detallado antes de iniciar.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Cuánto cuesta un sitio web profesional?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Desde $300 USD para una landing page hasta $3,000+ USD para un e-commerce completo. Puedes usar nuestro <a href="pages/cotizador.html">cotizador interactivo</a> para obtener un estimado inmediato, o leer nuestro <a href="pages/blog/cuanto-cuesta-sitio-web-ecuador.html">artículo detallado de precios</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Cumplen con las normas NEC e IEC en Ecuador?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Absolutamente. Todos nuestros proyectos eléctricos cumplen la Normativa Eléctrica Ecuatoriana (NEC) y los estándares internacionales IEC. Entregamos documentación técnica completa, planos certificados y certificados de conformidad firmados por ingeniero responsable.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Ofrecen soporte después de entregar el proyecto?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Sí. Incluimos acompañamiento post-entrega en todos nuestros proyectos. Para servicios eléctricos ofrecemos soporte de emergencia 24/7 y contratos de mantenimiento preventivo. Para proyectos web, incluimos entre 1-3 meses de soporte técnico y mantenimiento.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Pueden hacer un proyecto eléctrico y web al mismo tiempo?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Sí, esa es nuestra especialidad. Los proyectos integrales tienen la ventaja de un solo punto de contacto, un solo cronograma coordinado y, generalmente, mejores condiciones de precio. Es nuestro diferenciador principal frente a la competencia.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA FINAL — Objetivo: Conversión directa
+         Psicología: El CTA final recoge a todos los visitantes que
+         llegaron hasta aquí. Urgencia baja, fricción mínima.
+    ============================================================ -->
+    <section class="cta-final section-padding" id="contacto" aria-labelledby="cta-heading">
+      <div class="cta-bg-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="cta-inner" data-aos="fade-up">
+          <div class="cta-badge"><i class="fas fa-bolt"></i> Respuesta en menos de 2 horas</div>
+          <h2 id="cta-heading">¿Listo para dar el siguiente paso?</h2>
+          <p>Cuéntanos tu proyecto — eléctrico, web, o ambos. La consulta inicial es completamente gratuita.</p>
+
+          <div class="cta-buttons">
+            <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20quiero%20cotizar%20un%20proyecto"
+               class="btn btn-whatsapp btn-xl" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+              <span>
+                <strong>Escríbenos por WhatsApp</strong>
+                <small>+593 961 699 925</small>
+              </span>
+            </a>
+            <a href="mailto:contacto@ebcorp.ec" class="btn btn-email btn-xl" aria-label="Enviar correo electrónico">
+              <i class="fas fa-envelope"></i>
+              <span>
+                <strong>Enviar un correo</strong>
+                <small>contacto@ebcorp.ec</small>
+              </span>
+            </a>
+          </div>
+
+          <div class="cta-trust">
+            <span><i class="fas fa-check-circle"></i> Sin compromiso</span>
+            <span><i class="fas fa-check-circle"></i> Presupuesto gratuito</span>
+            <span><i class="fas fa-check-circle"></i> Respuesta garantizada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" aria-labelledby="footer-heading">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo footer-logo" aria-label="EB Corp inicio">
+            <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+            <span class="logo-text">EB <span class="logo-accent">Corp</span></span>
+          </a>
+          <p>Electrical Business Corporation. Una empresa. Dos especialidades. Quito, Ecuador.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/eb_corp1" target="_blank" rel="noopener" aria-label="Instagram de EB Corp">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/593961699925" target="_blank" rel="noopener" aria-label="WhatsApp de EB Corp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 id="footer-heading">Servicios</h3>
+          <ul>
+            <li><a href="pages/servicios-electricos.html">Ingeniería Eléctrica</a></li>
+            <li><a href="pages/desarrollo-web.html">Desarrollo Web</a></li>
+            <li><a href="pages/proyectos.html">Proyectos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Empresa</h3>
+          <ul>
+            <li><a href="pages/nosotros.html">Nosotros</a></li>
+            <li><a href="pages/precios.html">Precios</a></li>
+            <li><a href="pages/cotizador.html">Cotizador</a></li>
+            <li><a href="pages/blog/">Blog</a></li>
+            <li><a href="pages/contacto.html">Contacto</a></li>
+            <li><a href="pages/terminos.html">Términos y condiciones</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contacto</h3>
+          <ul class="footer-contact">
+            <li>
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/593961699925" target="_blank" rel="noopener">+593 961 699 925</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:contacto@ebcorp.ec">contacto@ebcorp.ec</a>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Quito, Ecuador</span>
+            </li>
+            <li>
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/eb_corp1" target="_blank" rel="noopener">@eb_corp1</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 EB Corp — Electrical Business Corporation. Todos los derechos reservados.</p>
+        <p>Quito, Ecuador &nbsp;·&nbsp; NEC / IEC Certified &nbsp;·&nbsp; <a href="pages/terminos.html" style="color:rgba(255,255,255,0.45);">Términos y condiciones</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20necesito%20información"
+     class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-tooltip">¿Necesitas ayuda?</span>
+  </a>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies" aria-live="polite">
+    <p>
+      Usamos <strong>Google Analytics</strong> para medir visitas y mejorar el sitio. No vendemos tus datos.
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Más info</a>
+    </p>
+    <div class="cookie-banner-actions">
+      <button class="cookie-reject" id="cookieReject">Solo esenciales</button>
+      <button class="cookie-accept" id="cookieAccept">Aceptar analytics</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
+  <script>
+    (function() {
+      var consent = localStorage.getItem('eb_cookie_consent');
+      var banner  = document.getElementById('cookieBanner');
+      if (!consent) {
+        // Show banner after short delay so it doesn't block LCP
+        setTimeout(function() { banner.classList.add('visible'); }, 1500);
+      }
+
+      document.getElementById('cookieAccept').addEventListener('click', function() {
+        localStorage.setItem('eb_cookie_consent', 'accepted');
+        banner.classList.remove('visible');
+        loadGA4();
+      });
+
+      document.getElementById('cookieReject').addEventListener('click', function() {
+        localStorage.setItem('eb_cookie_consent', 'rejected');
+        banner.classList.remove('visible');
+      });
+    })();
+  </script>
+</body>
+</html>
