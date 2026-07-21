@@ -67,6 +67,26 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog: Acometida Media Tensión -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/acometida-electrica-media-tension-ecuador.html</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.netlify.app/pages/blog/acometida-electrica-media-tension-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.netlify.app/pages/blog/en/medium-voltage-electrical-service-connection-ecuador.html" />
+  </url>
+
+  <!-- Blog: Medium-Voltage Service Connection (EN) -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/en/medium-voltage-electrical-service-connection-ecuador.html</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.netlify.app/pages/blog/acometida-electrica-media-tension-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.netlify.app/pages/blog/en/medium-voltage-electrical-service-connection-ecuador.html" />
+  </url>
+
   <!-- Blog: Norma NEC -->
   <url>
     <loc>https://ebcorp.netlify.app/pages/blog/norma-nec-ecuador-guia-completa.html</loc>
@@ -134,7 +154,7 @@
   <!-- Blog index — actualizado frecuentemente -->
   <url>
     <loc>https://ebcorp.netlify.app/pages/blog/</loc>
-    <lastmod>2025-03-28</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
