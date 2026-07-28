@@ -67,6 +67,26 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog: Mantenimiento Eléctrico Preventivo Ecuador -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/mantenimiento-electrico-preventivo-ecuador.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.netlify.app/pages/blog/mantenimiento-electrico-preventivo-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.netlify.app/pages/blog/en/preventive-electrical-maintenance-ecuador.html" />
+  </url>
+
+  <!-- Blog: Preventive Electrical Maintenance Ecuador (EN) -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/en/preventive-electrical-maintenance-ecuador.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.netlify.app/pages/blog/mantenimiento-electrico-preventivo-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.netlify.app/pages/blog/en/preventive-electrical-maintenance-ecuador.html" />
+  </url>
+
   <!-- Blog: Norma NEC -->
   <url>
     <loc>https://ebcorp.netlify.app/pages/blog/norma-nec-ecuador-guia-completa.html</loc>
