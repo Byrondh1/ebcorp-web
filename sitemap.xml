@@ -123,6 +123,26 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Blog: Mantenimiento Eléctrico Preventivo Industrial -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/mantenimiento-electrico-preventivo-industrial-ecuador.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.netlify.app/pages/blog/mantenimiento-electrico-preventivo-industrial-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.netlify.app/pages/blog/en/preventive-electrical-maintenance-industrial-ecuador.html" />
+  </url>
+
+  <!-- Blog: Preventive Electrical Maintenance (EN) -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/en/preventive-electrical-maintenance-industrial-ecuador.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.netlify.app/pages/blog/mantenimiento-electrico-preventivo-industrial-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.netlify.app/pages/blog/en/preventive-electrical-maintenance-industrial-ecuador.html" />
+  </url>
+
   <!-- Precios -->
   <url>
     <loc>https://ebcorp.netlify.app/pages/precios.html</loc>
@@ -134,7 +154,7 @@
   <!-- Blog index — actualizado frecuentemente -->
   <url>
     <loc>https://ebcorp.netlify.app/pages/blog/</loc>
-    <lastmod>2025-03-28</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
