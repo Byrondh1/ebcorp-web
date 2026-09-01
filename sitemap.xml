@@ -123,6 +123,22 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Blog: Acometida Eléctrica de Media Tensión -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/acometida-electrica-media-tension-ecuador.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog (EN): Medium Voltage Electrical Service Connection -->
+  <url>
+    <loc>https://ebcorp.netlify.app/pages/blog/en/medium-voltage-electrical-service-connection-ecuador.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Precios -->
   <url>
     <loc>https://ebcorp.netlify.app/pages/precios.html</loc>
