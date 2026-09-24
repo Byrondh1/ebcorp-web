@@ -165,16 +165,11 @@
             <h3>Cuéntanos tu proyecto</h3>
             <p>Completa el formulario y te contactamos en menos de 2 horas.</p>
 
-            <form class="contact-form" id="contactForm"
-                  name="contacto-ebcorp"
-                  data-netlify="true"
-                  data-netlify-honeypot="bot-field"
-                  novalidate>
-              <!-- Netlify hidden fields -->
-              <input type="hidden" name="form-name" value="contacto-ebcorp" />
-              <p style="display:none;">
-                <label>No llenar: <input name="bot-field" /></label>
-              </p>
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="form-hp" aria-hidden="true">
+                <label for="empresa_web">Sitio web de la empresa</label>
+                <input type="text" id="empresa_web" name="empresa_web" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="form-row">
                 <div class="form-group">
                   <label for="nombre">Nombre completo *</label>
@@ -227,6 +222,19 @@
                 Responderemos por el canal de tu preferencia.
               </p>
             </form>
+
+            <div class="form-error" id="formError" role="alert" hidden>
+              <p class="form-error-title"><i class="fas fa-exclamation-circle"></i> <span id="formErrorText">No pudimos enviar tu mensaje.</span></p>
+              <p>Escríbenos directamente y te respondemos igual de rápido:</p>
+              <div class="form-error-actions">
+                <a href="https://wa.me/593961699925" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="mailto:contacto@ebcorp.dev" class="btn btn-outline">
+                  <i class="fas fa-envelope"></i> contacto@ebcorp.dev
+                </a>
+              </div>
+            </div>
 
             <div class="form-success" id="formSuccess" style="display:none;">
               <i class="fas fa-check-circle"></i>
@@ -353,6 +361,9 @@
       }
 
       const submitBtn = form.querySelector('.form-submit');
+      const submitHTML = submitBtn.innerHTML;
+      const errorBox = document.getElementById('formError');
+      errorBox.hidden = true;
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando…';
 
@@ -366,21 +377,48 @@
         'otro':            'Otro'
       }[servicio.value] || servicio.value;
 
-      // 1. Submit to Netlify Forms (background — no page reload)
-      try {
-        const data = new FormData(form);
-        await fetch('/', { method: 'POST', body: data });
-      } catch (_) { /* silently fail — WhatsApp is the main channel */ }
+      const payload = {
+        nombre:      nombre.value.trim(),
+        empresa:     empresa,
+        email:       email.value.trim(),
+        telefono:    document.getElementById('telefono').value.trim(),
+        servicio:    servicio.value,
+        mensaje:     mensaje.value.trim(),
+        empresa_web: document.getElementById('empresa_web').value
+      };
 
-      // 2. Show success state
+      let status = 0;
+      let ok = false;
+      try {
+        const res = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        status = res.status;
+        const data = await res.json().catch(() => ({}));
+        ok = res.ok && data.ok === true;
+      } catch (_) { /* sin conexión: se trata como error */ }
+
+      if (!ok) {
+        document.getElementById('formErrorText').textContent =
+          status === 400 ? 'Revisa los datos: algún campo está incompleto o el mensaje supera los 5.000 caracteres.' :
+          status === 429 ? 'Recibimos varios mensajes seguidos desde tu conexión. Intenta de nuevo en unos minutos.' :
+          'No pudimos enviar tu mensaje en este momento.';
+        errorBox.hidden = false;
+        errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = submitHTML;
+        return;
+      }
+
       form.style.display = 'none';
       document.getElementById('formSuccess').style.display = 'flex';
 
-      // 3. Open WhatsApp with pre-filled message
       const text = encodeURIComponent(
-        `Hola EB Corp, soy ${nombre.value.trim()}${empresa ? ' de ' + empresa : ''}.\n` +
+        `Hola EB Corp, soy ${payload.nombre}${empresa ? ' de ' + empresa : ''}.\n` +
         `Me interesa: ${servicioLabel}.\n\n` +
-        `${mensaje.value.trim()}`
+        `${payload.mensaje}`
       );
       setTimeout(() => {
         window.open(`https://wa.me/593961699925?text=${text}`, '_blank');
