@@ -52,12 +52,9 @@ del índice del blog.
 
 ## 3. Correcciones de SEO
 
-**Unificar el dominio.** El `sitemap.xml` y varias etiquetas `og:image` apuntan a
-`https://ebcorp.netlify.app/`, mientras el sitio se sirve en otro dominio. Tener dos direcciones
-para el mismo contenido divide la autoridad y confunde a Google. Revisa qué dominio usan las
-etiquetas `<link rel="canonical">`, unifica **todo** el sitio a ese y dile al usuario cuál
-elegiste. Si el dominio bueno es `ebcorp.ec`, en `netlify.toml` debe quedar la redirección 301
-desde el subdominio de Netlify.
+**Unificar el dominio.** El dominio del sitio es `https://ebcorp.dev`, servido por Vercel. Todas
+las URL absolutas (canonical, og, hreflang, sitemap, robots.txt) deben usarlo. `ebcorp.netlify.app`
+fue eliminado, así que no hace falta redirección 301.
 
 **Fechas desactualizadas.** Varios títulos y descripciones dicen "2025" y los `lastmod` del
 sitemap están en marzo de 2025. Un artículo de precios que se anuncia como de 2025 pierde clics
@@ -74,7 +71,7 @@ tengan y que las URLs sean absolutas y del dominio unificado.
 "clic aquí". Es lo que convierte una visita de blog en un contacto.
 
 **Slugs estables.** No renombres archivos ya publicados. Si algún slug tiene que cambiar, agrega
-la redirección 301 correspondiente en `netlify.toml`.
+la redirección 301 correspondiente en `vercel.json`.
 
 ## 4. Limpiar las ramas
 
@@ -85,7 +82,7 @@ y espera su confirmación.
 ## 5. Verificación
 
 ```bash
-grep -rn "netlify.app" . --include=*.html --include=*.xml --include=*.toml   # solo la redirección
+grep -rn "netlify.app" . --include=*.html --include=*.xml --include=*.txt   # no debe devolver nada
 grep -c "<url>" sitemap.xml                                                  # debe cuadrar con las páginas
 grep -rn "hreflang" pages/blog/*.html | head                                 # pares completos
 ```
