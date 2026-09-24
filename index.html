@@ -25,9 +25,12 @@
     }
 
     // Cargar GA4 solo si hay consentimiento previo
-    if (localStorage.getItem('eb_cookie_consent') === 'accepted') {
-      loadGA4();
-    }
+    // try/catch: localStorage lanza en modo privado restringido o con cookies bloqueadas
+    try {
+      if (localStorage.getItem('eb_cookie_consent') === 'accepted') {
+        loadGA4();
+      }
+    } catch (err) { /* sin acceso a localStorage: no cargar GA4 */ }
 
     // Evento: clic en WhatsApp (solo si GA4 activo)
     document.addEventListener('click', function(e) {
@@ -51,8 +54,8 @@
   <meta property="og:url" content="https://ebcorp.netlify.app/" />
   <meta property="og:title" content="EB Corp — Una empresa. Dos especialidades." />
   <meta property="og:description" content="Ingeniería eléctrica industrial y desarrollo web profesional en Quito, Ecuador. +50 proyectos, 100% clientes satisfechos." />
-  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.svg" />
-  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_EC" />
@@ -153,10 +156,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" as="style" onload="this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" /></noscript>
 
   <!-- Icons (deferred — not critical for first paint) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" media="print" onload="this.media='all'" />
 
   <!-- Styles -->
   <link rel="preload" href="css/styles.css" as="style" />
@@ -214,23 +218,35 @@
     ============================================================ -->
     <section class="hero" id="inicio" aria-labelledby="hero-heading">
       <div class="hero-bg-grid" aria-hidden="true"></div>
-      <canvas id="lightningCanvas" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+
+      <!-- Lightning background effect -->
+      <div class="hero-lightning-bg" aria-hidden="true">
+        <svg class="bolt bolt-1" viewBox="0 0 60 300" xmlns="http://www.w3.org/2000/svg"><polyline points="30,0 10,110 28,110 5,300" fill="none" stroke="white" stroke-width="1.5"/></svg>
+        <svg class="bolt bolt-2" viewBox="0 0 60 260" xmlns="http://www.w3.org/2000/svg"><polyline points="20,0 40,90 22,90 45,260" fill="none" stroke="#00d4ff" stroke-width="1"/></svg>
+        <svg class="bolt bolt-3" viewBox="0 0 50 220" xmlns="http://www.w3.org/2000/svg"><polyline points="10,0 32,80 18,80 38,220" fill="none" stroke="white" stroke-width="2"/></svg>
+        <svg class="bolt bolt-4" viewBox="0 0 60 280" xmlns="http://www.w3.org/2000/svg"><polyline points="35,0 15,100 30,100 8,280" fill="none" stroke="#00d4ff" stroke-width="1.5"/></svg>
+        <svg class="bolt bolt-5" viewBox="0 0 50 200" xmlns="http://www.w3.org/2000/svg"><polyline points="25,0 8,70 22,70 5,200" fill="none" stroke="white" stroke-width="1"/></svg>
+        <svg class="bolt bolt-6" viewBox="0 0 60 320" xmlns="http://www.w3.org/2000/svg"><polyline points="15,0 38,120 20,120 42,320" fill="none" stroke="#00d4ff" stroke-width="2"/></svg>
+        <svg class="bolt bolt-7" viewBox="0 0 50 240" xmlns="http://www.w3.org/2000/svg"><polyline points="28,0 12,85 26,85 10,240" fill="none" stroke="white" stroke-width="1.5"/></svg>
+        <svg class="bolt bolt-8" viewBox="0 0 60 260" xmlns="http://www.w3.org/2000/svg"><polyline points="40,0 18,95 34,95 14,260" fill="none" stroke="#00d4ff" stroke-width="1"/></svg>
+      </div>
+
       <div class="hero-particles" aria-hidden="true" id="heroParticles"></div>
 
       <div class="container hero-content">
-        <h1 id="hero-heading" data-aos="fade-up" data-aos-delay="100" style="text-align:center;margin-bottom:12px;font-family:'Courier New',Courier,monospace;font-size:clamp(3.5rem,12vw,6rem);font-weight:700;letter-spacing:4px;line-height:1.1;">
+        <h1 id="hero-heading" data-aos="fade-up" data-aos-delay="100" style="text-align:center;margin-bottom:12px;font-family:'Courier New',Courier,monospace;font-size:clamp(3.5rem,12vw,6rem);font-weight:700;letter-spacing:4px;line-height:1.1;opacity:0;transform:translateY(30px);">
           <span style="color:#FFFFFF;">E</span><span style="color:#FFE01B;">B</span><span style="color:#FFFFFF;"> Corp</span>
         </h1>
-        <p data-aos="fade-up" data-aos-delay="150" style="text-align:center;font-family:'Rajdhani','Arial Narrow',sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.3em;color:#FFE01B;margin:0 0 24px;">
+        <p data-aos="fade-up" data-aos-delay="150" style="text-align:center;font-family:'Rajdhani','Arial Narrow',sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.3em;color:#FFE01B;margin:0 0 24px;opacity:0;">
           ELECTRICAL BUSINESS CORPORATION
         </p>
 
-        <p class="hero-sub" data-aos="fade-up" data-aos-delay="200">
+        <p class="hero-sub" data-aos="fade-up" data-aos-delay="200" style="opacity:0;transform:translateY(15px);">
           Ingeniería eléctrica de alto nivel y desarrollo web profesional.<br class="break-desktop" />
           Potenciamos empresas e industrias en el mundo físico y digital.
         </p>
 
-        <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="300">
+        <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="300" style="opacity:0;transform:scale(0.95)">
           <a href="pages/cotizador.html" class="btn btn-primary btn-lg">
             <i class="fas fa-calculator"></i> Cotizar proyecto
           </a>
@@ -547,6 +563,7 @@
         </div>
 
         <div class="process-steps">
+          <div class="process-line" aria-hidden="true"></div>
           <div class="process-step" data-aos="fade-up" data-aos-delay="0">
             <div class="step-number">01</div>
             <div class="step-content">
@@ -594,10 +611,11 @@
           <button class="tab-btn active" data-tab="todos" aria-pressed="true">Todos</button>
           <button class="tab-btn" data-tab="electrico" aria-pressed="false">Eléctrico</button>
           <button class="tab-btn" data-tab="web" aria-pressed="false">Web</button>
+          <div class="tab-indicator" aria-hidden="true"></div>
         </div>
 
         <div class="projects-grid" id="projectsGrid">
-          <div class="project-card" data-category="electrico" data-aos="fade-up">
+          <div class="project-card" data-category="electrico" data-filter="electrico" data-aos="fade-up">
             <div class="project-img project-img-1" data-label="Instalación Industrial — 400A">
               <div class="project-overlay">
                 <span class="project-tag">Eléctrico</span>
@@ -613,7 +631,7 @@
             </div>
           </div>
 
-          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card" data-category="web" data-filter="web" data-aos="fade-up" data-aos-delay="100">
             <div class="project-img project-img-2" data-label="E-commerce — 500+ productos">
               <div class="project-overlay">
                 <span class="project-tag">Web</span>
@@ -629,7 +647,7 @@
             </div>
           </div>
 
-          <div class="project-card" data-category="electrico" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card" data-category="electrico" data-filter="electrico" data-aos="fade-up" data-aos-delay="200">
             <div class="project-img project-img-3" data-label="UPS 80 kVA + ATS">
               <div class="project-overlay">
                 <span class="project-tag">Eléctrico</span>
@@ -645,7 +663,7 @@
             </div>
           </div>
 
-          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-card" data-category="web" data-filter="web" data-aos="fade-up" data-aos-delay="300">
             <div class="project-img project-img-4" data-label="Web Corporativa + SEO">
               <div class="project-overlay">
                 <span class="project-tag">Web</span>
@@ -661,7 +679,7 @@
             </div>
           </div>
 
-          <div class="project-card" data-category="electrico" data-aos="fade-up">
+          <div class="project-card" data-category="electrico" data-filter="electrico" data-aos="fade-up">
             <div class="project-img project-img-5" data-label="Auditoría Termográfica">
               <div class="project-overlay">
                 <span class="project-tag">Eléctrico</span>
@@ -677,7 +695,7 @@
             </div>
           </div>
 
-          <div class="project-card project-card-dual" data-category="todos" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card project-card-dual" data-category="todos" data-filter="todos" data-aos="fade-up" data-aos-delay="100">
             <div class="project-img project-img-dual" data-label="Eléctrico + Web — Proyecto integral">
               <div class="project-overlay">
                 <span class="project-tag project-tag-dual">Eléctrico + Web</span>
@@ -714,7 +732,7 @@
         </div>
 
         <div class="testimonials-grid">
-          <blockquote class="testimonial-card" data-aos="fade-up">
+          <blockquote class="testimonial-card tc-active">
             <div class="testimonial-stars" aria-label="5 estrellas">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -726,7 +744,7 @@
             </footer>
           </blockquote>
 
-          <blockquote class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+          <blockquote class="testimonial-card">
             <div class="testimonial-stars" aria-label="5 estrellas">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -738,7 +756,7 @@
             </footer>
           </blockquote>
 
-          <blockquote class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+          <blockquote class="testimonial-card">
             <div class="testimonial-stars" aria-label="5 estrellas">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -749,6 +767,12 @@
               <span>Dueño — Constructora, Quito Norte</span>
             </footer>
           </blockquote>
+        </div>
+
+        <div class="testimonials-dots" aria-label="Navegación de testimonios">
+          <button class="tc-dot tc-dot-active" aria-label="Testimonio 1" data-tc="0"></button>
+          <button class="tc-dot" aria-label="Testimonio 2" data-tc="1"></button>
+          <button class="tc-dot" aria-label="Testimonio 3" data-tc="2"></button>
         </div>
       </div>
     </section>
@@ -768,65 +792,77 @@
 
         <div class="faq-grid" data-aos="fade-up">
 
-          <details class="faq-item">
-            <summary class="faq-question">
+          <div class="faq-item faq-open">
+            <button class="faq-question" aria-expanded="true">
               <span>¿Trabajan con empresas de cualquier tamaño?</span>
-              <i class="fas fa-chevron-down faq-icon"></i>
-            </summary>
-            <div class="faq-answer">
-              <p>Sí. Atendemos desde pequeños negocios y locales comerciales hasta plantas industriales grandes. Cada proyecto se dimensiona según las necesidades reales del cliente, no existe un mínimo de inversión para trabajar con nosotros.</p>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer" aria-hidden="false">
+              <div class="faq-answer-inner">
+                <p>Sí. Atendemos desde pequeños negocios y locales comerciales hasta plantas industriales grandes. Cada proyecto se dimensiona según las necesidades reales del cliente, no existe un mínimo de inversión para trabajar con nosotros.</p>
+              </div>
             </div>
-          </details>
+          </div>
 
-          <details class="faq-item">
-            <summary class="faq-question">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
               <span>¿Cuánto tiempo toma un proyecto eléctrico típico?</span>
-              <i class="fas fa-chevron-down faq-icon"></i>
-            </summary>
-            <div class="faq-answer">
-              <p>Depende del alcance: una auditoría eléctrica puede completarse en 1-2 días, una instalación industrial pequeña en 1-2 semanas, y proyectos grandes en 4-8 semanas. Siempre entregamos un cronograma detallado antes de iniciar.</p>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                <p>Depende del alcance: una auditoría eléctrica puede completarse en 1-2 días, una instalación industrial pequeña en 1-2 semanas, y proyectos grandes en 4-8 semanas. Siempre entregamos un cronograma detallado antes de iniciar.</p>
+              </div>
             </div>
-          </details>
+          </div>
 
-          <details class="faq-item">
-            <summary class="faq-question">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
               <span>¿Cuánto cuesta un sitio web profesional?</span>
-              <i class="fas fa-chevron-down faq-icon"></i>
-            </summary>
-            <div class="faq-answer">
-              <p>Desde $300 USD para una landing page hasta $3,000+ USD para un e-commerce completo. Puedes usar nuestro <a href="pages/cotizador.html">cotizador interactivo</a> para obtener un estimado inmediato, o leer nuestro <a href="pages/blog/cuanto-cuesta-sitio-web-ecuador.html">artículo detallado de precios</a>.</p>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                <p>Desde $300 USD para una landing page hasta $3,000+ USD para un e-commerce completo. Puedes usar nuestro <a href="pages/cotizador.html">cotizador interactivo</a> para obtener un estimado inmediato, o leer nuestro <a href="pages/blog/cuanto-cuesta-sitio-web-ecuador.html">artículo detallado de precios</a>.</p>
+              </div>
             </div>
-          </details>
+          </div>
 
-          <details class="faq-item">
-            <summary class="faq-question">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
               <span>¿Cumplen con las normas NEC e IEC en Ecuador?</span>
-              <i class="fas fa-chevron-down faq-icon"></i>
-            </summary>
-            <div class="faq-answer">
-              <p>Absolutamente. Todos nuestros proyectos eléctricos cumplen la Normativa Eléctrica Ecuatoriana (NEC) y los estándares internacionales IEC. Entregamos documentación técnica completa, planos certificados y certificados de conformidad firmados por ingeniero responsable.</p>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                <p>Absolutamente. Todos nuestros proyectos eléctricos cumplen la Normativa Eléctrica Ecuatoriana (NEC) y los estándares internacionales IEC. Entregamos documentación técnica completa, planos certificados y certificados de conformidad firmados por ingeniero responsable.</p>
+              </div>
             </div>
-          </details>
+          </div>
 
-          <details class="faq-item">
-            <summary class="faq-question">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
               <span>¿Ofrecen soporte después de entregar el proyecto?</span>
-              <i class="fas fa-chevron-down faq-icon"></i>
-            </summary>
-            <div class="faq-answer">
-              <p>Sí. Incluimos acompañamiento post-entrega en todos nuestros proyectos. Para servicios eléctricos ofrecemos soporte de emergencia 24/7 y contratos de mantenimiento preventivo. Para proyectos web, incluimos entre 1-3 meses de soporte técnico y mantenimiento.</p>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                <p>Sí. Incluimos acompañamiento post-entrega en todos nuestros proyectos. Para servicios eléctricos ofrecemos soporte de emergencia 24/7 y contratos de mantenimiento preventivo. Para proyectos web, incluimos entre 1-3 meses de soporte técnico y mantenimiento.</p>
+              </div>
             </div>
-          </details>
+          </div>
 
-          <details class="faq-item">
-            <summary class="faq-question">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
               <span>¿Pueden hacer un proyecto eléctrico y web al mismo tiempo?</span>
-              <i class="fas fa-chevron-down faq-icon"></i>
-            </summary>
-            <div class="faq-answer">
-              <p>Sí, esa es nuestra especialidad. Los proyectos integrales tienen la ventaja de un solo punto de contacto, un solo cronograma coordinado y, generalmente, mejores condiciones de precio. Es nuestro diferenciador principal frente a la competencia.</p>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                <p>Sí, esa es nuestra especialidad. Los proyectos integrales tienen la ventaja de un solo punto de contacto, un solo cronograma coordinado y, generalmente, mejores condiciones de precio. Es nuestro diferenciador principal frente a la competencia.</p>
+              </div>
             </div>
-          </details>
+          </div>
 
         </div>
       </div>
@@ -970,7 +1006,9 @@
   <script src="js/main.js" defer></script>
   <script>
     (function() {
-      var consent = localStorage.getItem('eb_cookie_consent');
+      // try/catch: localStorage lanza en modo privado restringido o con cookies bloqueadas
+      var consent = null;
+      try { consent = localStorage.getItem('eb_cookie_consent'); } catch (err) {}
       var banner  = document.getElementById('cookieBanner');
       if (!consent) {
         // Show banner after short delay so it doesn't block LCP
@@ -978,13 +1016,13 @@
       }
 
       document.getElementById('cookieAccept').addEventListener('click', function() {
-        localStorage.setItem('eb_cookie_consent', 'accepted');
+        try { localStorage.setItem('eb_cookie_consent', 'accepted'); } catch (err) {}
         banner.classList.remove('visible');
         loadGA4();
       });
 
       document.getElementById('cookieReject').addEventListener('click', function() {
-        localStorage.setItem('eb_cookie_consent', 'rejected');
+        try { localStorage.setItem('eb_cookie_consent', 'rejected'); } catch (err) {}
         banner.classList.remove('visible');
       });
     })();

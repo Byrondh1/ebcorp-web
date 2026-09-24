@@ -12,8 +12,8 @@
   <meta property="og:url" content="https://ebcorp.netlify.app/pages/proyectos.html" />
   <meta property="og:title" content="Portafolio | EB Corp — +50 Proyectos Eléctricos y Web en Ecuador" />
   <meta property="og:description" content="Más de 50 proyectos eléctricos industriales y sitios web profesionales completados en Ecuador. Instalaciones, tableros, auditorías y webs corporativas. 100% clientes satisfechos." />
-  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.svg" />
-  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/pages.css" />
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
@@ -116,10 +116,11 @@
       <div class="container">
 
         <div class="projects-tabs" data-aos="fade-up" style="margin-bottom:3rem;">
-          <button class="tab-btn active" data-tab="todos">Todos</button>
-          <button class="tab-btn" data-tab="electrico">Eléctrico</button>
-          <button class="tab-btn" data-tab="web">Web</button>
-          <button class="tab-btn" data-tab="integral">Integral</button>
+          <button class="tab-btn active" data-tab="todos" aria-pressed="true">Todos</button>
+          <button class="tab-btn" data-tab="electrico" aria-pressed="false">Eléctrico</button>
+          <button class="tab-btn" data-tab="web" aria-pressed="false">Web</button>
+          <button class="tab-btn" data-tab="integral" aria-pressed="false">Integral</button>
+          <div class="tab-indicator" aria-hidden="true"></div>
         </div>
 
         <div class="projects-page-grid" id="projectsGrid">
