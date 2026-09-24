@@ -4,4 +4,4 @@ Allow: /
 # Bloquear archivos de configuración
 Disallow: /BLUEPRINT.md
 
-Sitemap: https://ebcorp.netlify.app/sitemap.xml
+Sitemap: https://ebcorp.dev/sitemap.xml

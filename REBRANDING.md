@@ -162,14 +162,13 @@ En las 12 páginas HTML (`index.html`, 8 en `pages/`, 3 en `pages/blog/` más el
 Sustituye la og:image por el PNG. Los SVG **no se renderizan** en WhatsApp ni en Facebook, por eso
 los enlaces compartidos salen sin vista previa:
 ```html
-<meta property="og:image" content="https://ebcorp.ec/assets/images/og-image.png">
+<meta property="og:image" content="https://ebcorp.dev/assets/images/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 ```
-Ojo: hoy varias páginas apuntan a `https://ebcorp.netlify.app/...`. Usa el mismo dominio que ya
-está en la etiqueta `<link rel="canonical">` de cada página; si difieren entre páginas, unifícalos
-y avísale al usuario cuál elegiste.
+El dominio del sitio es `https://ebcorp.dev`, servido por Vercel. Todas las URL absolutas
+(canonical, og, hreflang, sitemap) deben usarlo; `ebcorp.netlify.app` fue eliminado.
 
 Solo `index.html` tiene `theme-color` hoy. Agrégalo a las 11 restantes.
 

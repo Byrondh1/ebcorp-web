@@ -2114,6 +2114,11 @@ p { line-height: 1.7; color: var(--color-gray-700); }
   .cookie-banner { flex-direction: column; align-items: flex-start; }
   .cookie-banner-actions { width: 100%; }
   .cookie-accept, .cookie-reject { flex: 1; text-align: center; }
+
+  /* Solo el icono: logo + botón con texto + menú no caben en 320 px.
+     font-size: 0 conserva "WhatsApp" como nombre accesible del enlace. */
+  .nav-actions .btn-whatsapp { font-size: 0; gap: 0; padding: 0.6rem 0.75rem; }
+  .nav-actions .btn-whatsapp i { font-size: 1.15rem; }
 }
 
 /* ============================================================
