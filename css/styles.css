@@ -38,12 +38,15 @@
   --color-azul:           #027DFE;   /* Azul EB — línea de ingeniería eléctrica */
   --color-cian:           #08DDF0;   /* Cian pulso — línea de desarrollo web */
   --color-accent-electric: var(--color-azul);  /* alias de compatibilidad */
+  --color-azul-texto:     #0057B8;   /* solo enlaces y texto pequeño azul sobre fondo claro (6,9:1 sobre blanco) */
 
   --gradient-marca: linear-gradient(120deg, #026EFF 0%, #069AFC 50%, #08DDF0 100%);
 
   /* Funcionales — NO son colores de marca, solo estados de interfaz */
   --color-warning: #E8A33D;   /* avisos de riesgo eléctrico en el blog */
   --color-success: #1FA97A;   /* confirmaciones, listas de checks */
+  --color-warning-texto: #B45309;   /* texto de los avisos; el tono de arriba queda para iconos y fondos */
+  --color-success-texto: #15803D;
   --color-danger:  #EF4444;
 
   /* Neutrals */
@@ -206,7 +209,7 @@ p { line-height: 1.7; color: var(--color-gray-700); }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-accent-electric);
+  color: var(--color-azul-texto);
   background: rgba(2, 125, 254, 0.1);
   padding: 0.3rem 0.8rem;
   border-radius: var(--radius-full);

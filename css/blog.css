@@ -61,9 +61,12 @@
 
 .blog-tag-electrical {
   background: rgba(2, 125, 254, 0.2);
-  color: #027DFE;
+  color: var(--color-white);   /* va sobre imágenes oscuras: el azul no llega a AA en texto pequeño */
   border: 1px solid rgba(2, 125, 254, 0.3);
 }
+
+/* En las tarjetas de artículos relacionados la etiqueta va sobre blanco, no sobre la imagen */
+.related-card-body .blog-tag-electrical { color: var(--color-azul-texto); }
 
 .blog-tag-digital {
   background: rgba(8, 221, 240, 0.15);
@@ -294,7 +297,7 @@
   border: 1px solid rgba(232, 163, 61, 0.2);
 }
 .callout-warning > i { color: var(--color-warning); }
-.callout-warning strong { color: var(--color-warning); }
+.callout-warning strong { color: var(--color-warning-texto); }
 
 .callout-danger {
   background: rgba(239, 68, 68, 0.06);
@@ -308,14 +311,14 @@
   border: 1px solid rgba(2, 125, 254, 0.15);
 }
 .callout-info > i { color: var(--color-accent-electric); }
-.callout-info strong { color: var(--color-accent-electric); }
+.callout-info strong { color: var(--color-azul-texto); }
 
 .callout-success {
   background: rgba(39, 174, 96, 0.07);
   border: 1px solid rgba(39, 174, 96, 0.2);
 }
 .callout-success > i { color: var(--color-success); }
-.callout-success strong { color: var(--color-success); }
+.callout-success strong { color: var(--color-success-texto); }
 
 /* FAQ details/summary */
 .faq-item {
