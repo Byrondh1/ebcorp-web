@@ -504,6 +504,39 @@
   max-width: 320px;
 }
 
+/* Campo trampa: fuera de la vista con CSS, no con type="hidden", para que un bot lo rellene */
+.form-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Form error state */
+.form-error {
+  margin-top: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-lg);
+  background: rgba(239, 68, 68, 0.05);
+  font-size: var(--text-sm);
+  color: var(--color-gray-700);
+}
+
+.form-error-title {
+  font-weight: 600;
+  color: #b91c1c;
+  margin-bottom: var(--space-2);
+}
+
+.form-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
 /* ============================================================
    PROJECTS PAGE
 ============================================================ */
@@ -587,7 +620,8 @@
 @media (max-width: 1024px) {
   .service-detail-grid { grid-template-columns: repeat(2, 1fr); }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
-  .contact-grid { grid-template-columns: 1fr; }
+  /* minmax(0, …): con 1fr a secas, el ancho mínimo de los campos estira la columna fuera de la pantalla */
+  .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .projects-page-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -595,7 +629,7 @@
   .faq-grid { grid-template-columns: 1fr; }
   .service-detail-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr 1fr; }
-  .form-row { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: minmax(0, 1fr); }
   .contact-form-wrap { padding: var(--space-6); }
   .projects-page-grid { grid-template-columns: 1fr; }
   .page-hero { min-height: 400px; }
