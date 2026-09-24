@@ -18,7 +18,7 @@
   color: rgba(255,255,255,0.8);
 }
 
-.pricing-trust-bar i { color: #27ae60; }
+.pricing-trust-bar i { color: var(--color-success); }
 
 /* Tabs bar */
 .pricing-tabs-bar {
@@ -185,7 +185,7 @@
 }
 
 .pricing-features i {
-  color: #27ae60;
+  color: var(--color-success);
   font-size: 0.75rem;
   flex-shrink: 0;
   margin-top: 0.2rem;

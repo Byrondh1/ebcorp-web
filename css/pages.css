@@ -17,7 +17,7 @@
 }
 
 .page-hero-electrical {
-  background: linear-gradient(135deg, #0F1A3D 0%, #1A2B5F 50%, #2A1800 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, color-mix(in srgb, var(--color-azul) 25%, var(--color-primary-dark)) 100%);
 }
 
 .page-hero-digital {
@@ -28,8 +28,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(8, 221, 240, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 221, 240, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -60,20 +60,20 @@
   width: 72px;
   height: 72px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, rgba(245,166,35,0.2), rgba(245,166,35,0.05));
-  border: 1px solid rgba(245,166,35,0.3);
+  background: linear-gradient(135deg, rgba(2, 125, 254, 0.2), rgba(2, 125, 254, 0.05));
+  border: 1px solid rgba(2, 125, 254, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.75rem;
-  color: var(--color-accent-yellow);
+  color: var(--color-azul);
   margin: 0 auto var(--space-6);
 }
 
 .page-hero-icon-digital {
-  background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,212,255,0.03));
-  border-color: rgba(0,212,255,0.25);
-  color: var(--color-accent-electric);
+  background: linear-gradient(135deg, rgba(8, 221, 240, 0.15), rgba(8, 221, 240, 0.03));
+  border-color: rgba(8, 221, 240, 0.25);
+  color: var(--color-cian);
 }
 
 .page-hero-content h1 {
@@ -82,14 +82,14 @@
 }
 
 .page-hero-content h1 span {
-  background: linear-gradient(135deg, var(--color-accent-yellow), #E08A00);
+  background: var(--gradient-marca);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .page-hero-digital .page-hero-content h1 span {
-  background: linear-gradient(135deg, var(--color-accent-electric), #0099CC);
+  background: var(--gradient-marca);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -119,11 +119,11 @@
   padding: var(--space-8);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
-  border-top: 3px solid var(--color-accent-yellow);
+  border-top: 3px solid var(--color-azul);
 }
 
 .service-detail-card-digital {
-  border-top-color: var(--color-accent-electric);
+  border-top-color: var(--color-cian);
 }
 
 .service-detail-card:hover {
@@ -143,15 +143,15 @@
 }
 
 .sdc-yellow {
-  background: rgba(245,166,35,0.1);
-  color: var(--color-accent-yellow);
-  border: 1px solid rgba(245,166,35,0.2);
+  background: rgba(2, 125, 254, 0.1);
+  color: var(--color-azul);
+  border: 1px solid rgba(2, 125, 254, 0.2);
 }
 
 .sdc-blue {
-  background: rgba(0,212,255,0.08);
-  color: var(--color-accent-electric);
-  border: 1px solid rgba(0,212,255,0.2);
+  background: rgba(8, 221, 240, 0.08);
+  color: var(--color-cian);
+  border: 1px solid rgba(8, 221, 240, 0.2);
 }
 
 .service-detail-card h3 {
@@ -183,13 +183,13 @@
 }
 
 .sdc-features .fa-check {
-  color: var(--color-accent-yellow);
+  color: var(--color-azul);
   font-size: 0.7rem;
   flex-shrink: 0;
 }
 
 .sdc-features-digital .fa-check {
-  color: var(--color-accent-electric);
+  color: var(--color-cian);
 }
 
 /* Why Us */
@@ -293,9 +293,9 @@
 }
 
 .contact-channel-email .channel-icon {
-  background: rgba(26,43,95,0.08);
+  background: rgba(27, 36, 44, 0.08);
   color: var(--color-primary);
-  border: 1px solid rgba(26,43,95,0.15);
+  border: 1px solid rgba(27, 36, 44, 0.15);
 }
 
 .contact-channel-instagram .channel-icon {
@@ -372,7 +372,7 @@
 
 .hours-row span { color: var(--color-gray-500); }
 .hours-row strong { color: var(--color-gray-900); font-weight: 600; }
-.hours-247 { color: var(--color-accent-green) !important; }
+.hours-247 { color: var(--color-success) !important; }
 
 /* Contact Form */
 .contact-form-wrap {
@@ -436,7 +436,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(26,43,95,0.08);
+  box-shadow: 0 0 0 3px rgba(27, 36, 44, 0.08);
 }
 
 .form-group input::placeholder,
@@ -491,7 +491,7 @@
 
 .form-success i {
   font-size: 3rem;
-  color: var(--color-accent-green);
+  color: var(--color-success);
 }
 
 .form-success h4 {

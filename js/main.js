@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
       borderRadius:    '50%',
       left:            `${x}%`,
       top:             `${y}%`,
-      background:      i % 3 === 0 ? '#F5A623' : '#00D4FF',
+      background:      i % 3 === 0 ? '#027DFE' : '#08DDF0',
       opacity:         op,
       animation:       `floatY ${dur}s ease-in-out ${del}s infinite`,
       pointerEvents:   'none',
