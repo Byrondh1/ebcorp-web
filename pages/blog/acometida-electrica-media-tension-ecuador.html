@@ -14,8 +14,8 @@
   <meta property="og:title" content="Acometida Eléctrica de Media Tensión: Guía para Empresas en Ecuador" />
   <meta property="og:description" content="Qué es, cuándo se necesita y cuánto cuesta una acometida de media tensión para una empresa industrial en Ecuador. Proceso, elementos y errores comunes." />
   <meta property="og:url" content="https://ebcorp.netlify.app/pages/blog/acometida-electrica-media-tension-ecuador.html" />
-  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.svg" />
-  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image" content="https://ebcorp.netlify.app/assets/images/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -99,7 +99,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" />
   <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="../../css/pages.css" />
   <link rel="stylesheet" href="../../css/blog.css" />
@@ -246,25 +246,53 @@
 
             <h2>Preguntas frecuentes</h2>
 
-            <details class="faq-item" open>
-              <summary><strong>¿Qué voltaje tiene la media tensión en Ecuador?</strong></summary>
-              <p>Las distribuidoras ecuatorianas (CNEL, Empresa Eléctrica Quito, EEASA, entre otras) operan típicamente en 13.2 kV o 22.8 kV, según la zona de concesión. El nivel exacto lo confirma el estudio de factibilidad de tu distribuidora local.</p>
-            </details>
+            <div class="faq-item faq-open">
+              <button class="faq-question" aria-expanded="true">
+                <span>¿Qué voltaje tiene la media tensión en Ecuador?</span>
+                <i class="fas fa-plus faq-icon"></i>
+              </button>
+              <div class="faq-answer" aria-hidden="false">
+                <div class="faq-answer-inner">
+                  <p>Las distribuidoras ecuatorianas (CNEL, Empresa Eléctrica Quito, EEASA, entre otras) operan típicamente en 13.2 kV o 22.8 kV, según la zona de concesión. El nivel exacto lo confirma el estudio de factibilidad de tu distribuidora local.</p>
+                </div>
+              </div>
+            </div>
 
-            <details class="faq-item">
-              <summary><strong>¿Cuánto tiempo tarda la aprobación de una acometida de media tensión?</strong></summary>
-              <p>Entre 4 y 10 semanas en promedio: estudio de factibilidad (1-2 semanas), diseño y aprobación de planos (2-4 semanas), construcción (2-4 semanas) e inspección y energización (1-2 semanas).</p>
-            </details>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span>¿Cuánto tiempo tarda la aprobación de una acometida de media tensión?</span>
+                <i class="fas fa-plus faq-icon"></i>
+              </button>
+              <div class="faq-answer" aria-hidden="true">
+                <div class="faq-answer-inner">
+                  <p>Entre 4 y 10 semanas en promedio: estudio de factibilidad (1-2 semanas), diseño y aprobación de planos (2-4 semanas), construcción (2-4 semanas) e inspección y energización (1-2 semanas).</p>
+                </div>
+              </div>
+            </div>
 
-            <details class="faq-item">
-              <summary><strong>¿Quién es dueño de la acometida, la empresa o la distribuidora?</strong></summary>
-              <p>Depende del punto de entrega. La red de media tensión hasta el medidor suele ser de la distribuidora; el transformador, la celda de media tensión y las instalaciones internas después del punto de entrega son propiedad y responsabilidad del cliente.</p>
-            </details>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span>¿Quién es dueño de la acometida, la empresa o la distribuidora?</span>
+                <i class="fas fa-plus faq-icon"></i>
+              </button>
+              <div class="faq-answer" aria-hidden="true">
+                <div class="faq-answer-inner">
+                  <p>Depende del punto de entrega. La red de media tensión hasta el medidor suele ser de la distribuidora; el transformador, la celda de media tensión y las instalaciones internas después del punto de entrega son propiedad y responsabilidad del cliente.</p>
+                </div>
+              </div>
+            </div>
 
-            <details class="faq-item">
-              <summary><strong>¿Toda empresa industrial necesita una subestación propia?</strong></summary>
-              <p>No necesariamente. Se necesita una subestación con transformador y celda de media tensión propios cuando la demanda supera la capacidad disponible en baja tensión, generalmente por encima de 50-100 kW, o cuando la distribuidora exige medición en media tensión por la carga contratada.</p>
-            </details>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span>¿Toda empresa industrial necesita una subestación propia?</span>
+                <i class="fas fa-plus faq-icon"></i>
+              </button>
+              <div class="faq-answer" aria-hidden="true">
+                <div class="faq-answer-inner">
+                  <p>No necesariamente. Se necesita una subestación con transformador y celda de media tensión propios cuando la demanda supera la capacidad disponible en baja tensión, generalmente por encima de 50-100 kW, o cuando la distribuidora exige medición en media tensión por la carga contratada.</p>
+                </div>
+              </div>
+            </div>
 
             <div class="article-cta">
               <h3>¿Necesitas diseñar o instalar una acometida de media tensión?</h3>
