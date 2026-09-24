@@ -7,6 +7,73 @@
 'use strict';
 
 /* ============================================================
+   HERO ENTRANCE — CSS transitions applied via JS on DOMContentLoaded
+============================================================ */
+document.addEventListener('DOMContentLoaded', function () {
+  var h1      = document.getElementById('hero-heading');
+  var tagline = document.querySelector('.hero-content > p:not(.hero-sub)');
+  var sub     = document.querySelector('.hero-sub');
+  var cta     = document.querySelector('.hero-cta-group');
+
+  function animateIn(el, delay, transition, to) {
+    if (!el) return;
+    setTimeout(function () {
+      el.style.transition = transition;
+      Object.assign(el.style, to);
+    }, delay);
+  }
+
+  // 1. h1: translateY(30px→0) + opacity 0→1, 600ms, delay 100ms
+  animateIn(h1, 100,
+    'opacity 600ms ease-out, transform 600ms ease-out',
+    { opacity: '1', transform: 'translateY(0)' }
+  );
+
+  // 2. tagline: typewriter effect — letras una por una cada 55ms, delay 500ms
+  (function typewriter() {
+    if (!tagline) return;
+    var fullText = tagline.textContent.trim();
+    tagline.textContent = '';
+
+    var cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    cursor.textContent = '|';
+    tagline.appendChild(cursor);
+
+    setTimeout(function () {
+      tagline.style.transition = 'opacity 200ms ease';
+      tagline.style.opacity = '1';
+
+      var i = 0;
+      var interval = setInterval(function () {
+        if (i < fullText.length) {
+          tagline.insertBefore(document.createTextNode(fullText[i]), cursor);
+          i++;
+        } else {
+          clearInterval(interval);
+          setTimeout(function () {
+            cursor.style.animation = 'none';
+            cursor.style.opacity = '0';
+          }, 800);
+        }
+      }, 55);
+    }, 500);
+  })();
+
+  // 3. hero-sub: translateY(15px→0) + opacity 0→1, 500ms, delay 700ms
+  animateIn(sub, 700,
+    'opacity 500ms ease-out, transform 500ms ease-out',
+    { opacity: '1', transform: 'translateY(0)' }
+  );
+
+  // 4. cta-group: scale(0.95→1) + opacity 0→1, 400ms, delay 950ms
+  animateIn(cta, 950,
+    'opacity 400ms ease-out, transform 400ms ease-out',
+    { opacity: '1', transform: 'scale(1)' }
+  );
+});
+
+/* ============================================================
    NAVIGATION — Scroll behavior + mobile toggle
 ============================================================ */
 (function initNav() {
@@ -15,9 +82,17 @@
   const navLinks = document.getElementById('navLinks');
   if (!navbar) return;
 
-  // Scroll class
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  // Scroll class — rAF throttled
+  var rafPending = false;
+  window.addEventListener('scroll', function () {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(function () {
+      var past = window.scrollY > 60;
+      navbar.classList.toggle('scrolled',     past);
+      navbar.classList.toggle('nav-scrolled', past);
+      rafPending = false;
+    });
   }, { passive: true });
 
   // Mobile toggle
@@ -111,38 +186,75 @@
 })();
 
 /* ============================================================
-   TAB FILTERING — Works for both portfolio (.project-card)
-   and blog grid (.blog-card) pages
+   TAB FILTERING — Animated filter with sliding indicator
 ============================================================ */
 (function initTabFilter() {
-  const tabs  = document.querySelectorAll('.tab-btn');
-  const cards = document.querySelectorAll('.project-card, .blog-card');
+  const tabs      = document.querySelectorAll('.tab-btn');
+  const cards     = document.querySelectorAll('.project-card, .blog-card');
+  const indicator = document.querySelector('.tab-indicator');
   if (!tabs.length || !cards.length) return;
+
+  function moveIndicator(btn) {
+    if (!indicator) return;
+    indicator.style.left  = btn.offsetLeft + 'px';
+    indicator.style.width = btn.offsetWidth + 'px';
+  }
+
+  // Position indicator on load without animating
+  const firstActive = document.querySelector('.tab-btn.active');
+  if (firstActive && indicator) {
+    indicator.style.transition = 'none';
+    moveIndicator(firstActive);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      indicator.style.transition = '';
+    }));
+  }
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const filter = tab.dataset.tab;
 
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-pressed', 'false');
-      });
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
       tab.classList.add('active');
       tab.setAttribute('aria-pressed', 'true');
 
-      cards.forEach(card => {
-        const category = card.dataset.category;
-        const visible  = filter === 'todos' || category === filter || category === 'todos';
+      moveIndicator(tab);
 
-        if (visible) {
-          card.style.display = '';
-          card.classList.remove('aos-animate');
-          requestAnimationFrame(() => {
-            setTimeout(() => card.classList.add('aos-animate'), 50);
-          });
-        } else {
-          card.style.display = 'none';
+      let showIdx = 0;
+
+      cards.forEach(card => {
+        const cat     = card.dataset.filter || card.dataset.category;
+        const matches = filter === 'todos' || cat === filter || cat === 'todos';
+        const isHidden = card.style.display === 'none';
+
+        if (!matches) {
+          // Animate out: opacity + scale, then hide
+          card.style.transition = 'opacity 200ms ease, transform 200ms ease';
+          card.style.opacity    = '0';
+          card.style.transform  = 'scale(0.92)';
+          setTimeout(() => {
+            card.style.display    = 'none';
+            card.style.transition = '';
+            card.style.opacity    = '';
+            card.style.transform  = '';
+          }, 210);
+
+        } else if (isHidden) {
+          // Animate in: reveal then transition opacity + scale with stagger
+          const delay = 50 + showIdx++ * 50;
+          card.style.display    = '';
+          card.style.transition = 'none';
+          card.style.opacity    = '0';
+          card.style.transform  = 'scale(0.92)';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            setTimeout(() => {
+              card.style.transition = 'opacity 300ms ease, transform 300ms ease';
+              card.style.opacity    = '1';
+              card.style.transform  = 'scale(1)';
+            }, delay);
+          }));
         }
+        // Already visible and matches → no change needed
       });
     });
   });
@@ -307,104 +419,345 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 /* ============================================================
-   LIGHTNING STORM — Canvas background effect for hero
+   STATS COUNTER — Animates .stat-number[data-count] on scroll
 ============================================================ */
-(function initLightning() {
-  const canvas = document.getElementById('lightningCanvas');
-  if (!canvas) return;
+(function initStatsCounter() {
+  const statsBar = document.querySelector('section.stats-bar');
+  if (!statsBar) return;
 
-  const ctx = canvas.getContext('2d');
+  const observer = new IntersectionObserver((entries, obs) => {
+    if (!entries[0].isIntersecting) return;
+    obs.disconnect();
 
-  function resize() {
-    const hero = canvas.parentElement;
-    canvas.width  = hero.offsetWidth;
-    canvas.height = hero.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
+    statsBar.querySelectorAll('.stat-number[data-count]').forEach(span => {
+      const end      = parseInt(span.getAttribute('data-count'), 10);
+      const duration = 1800;
+      const start    = performance.now();
 
-  // Draw a recursive lightning bolt segment
-  function drawBolt(x1, y1, x2, y2, depth, alpha) {
-    if (depth === 0) return;
-
-    const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * (Math.abs(x2 - x1) + Math.abs(y2 - y1)) * 0.4;
-    const my = (y1 + y2) / 2 + (Math.random() - 0.5) * 20;
-
-    // Glow pass
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(mx, my);
-    ctx.lineTo(x2, y2);
-    ctx.strokeStyle = `rgba(201,168,76,${alpha * 0.3})`;
-    ctx.lineWidth = depth * 2.5;
-    ctx.shadowColor = '#FFE01B';
-    ctx.shadowBlur = 18;
-    ctx.stroke();
-
-    // Core pass
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(mx, my);
-    ctx.lineTo(x2, y2);
-    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-    ctx.lineWidth = Math.max(0.5, depth * 0.8);
-    ctx.shadowColor = '#fff';
-    ctx.shadowBlur = 8;
-    ctx.stroke();
-
-    // Recurse main bolt
-    drawBolt(x1, y1, mx, my, depth - 1, alpha * 0.85);
-    drawBolt(mx, my, x2, y2, depth - 1, alpha * 0.85);
-
-    // Random branch
-    if (depth > 2 && Math.random() > 0.55) {
-      const bx = mx + (Math.random() - 0.3) * canvas.width * 0.25;
-      const by = my + Math.random() * (canvas.height - my) * 0.45;
-      drawBolt(mx, my, bx, by, depth - 2, alpha * 0.5);
-    }
-  }
-
-  function strike() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const count = Math.floor(Math.random() * 2) + 1;
-    for (let i = 0; i < count; i++) {
-      const x1 = Math.random() * canvas.width;
-      const y1 = 0;
-      const x2 = x1 + (Math.random() - 0.5) * canvas.width * 0.4;
-      const y2 = canvas.height * (0.4 + Math.random() * 0.5);
-      drawBolt(x1, y1, x2, y2, 6, 0.9);
-    }
-
-    // Flash overlay
-    ctx.fillStyle = 'rgba(255,255,220,0.04)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Fade out
-    let opacity = 1;
-    const fade = setInterval(() => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      opacity -= 0.12;
-      if (opacity <= 0) { clearInterval(fade); return; }
-      ctx.globalAlpha = opacity;
-      for (let i = 0; i < count; i++) {
-        const x1 = Math.random() * canvas.width * 0.1 + canvas.width * 0.45;
-        const y1 = 0;
-        const x2 = x1 + (Math.random() - 0.5) * 60;
-        const y2 = canvas.height * 0.3;
-        drawBolt(x1, y1, x2, y2, 3, 0.3);
+      function tick(now) {
+        const t        = Math.min((now - start) / duration, 1);
+        const progress = 1 - Math.pow(1 - t, 3);
+        span.textContent = Math.round(progress * end);
+        if (t < 1) requestAnimationFrame(tick);
       }
-      ctx.globalAlpha = 1;
-    }, 50);
-  }
 
-  // Schedule random strikes
-  function scheduleNext() {
-    const delay = 1500 + Math.random() * 4000;
-    setTimeout(() => { strike(); scheduleNext(); }, delay);
-  }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.3 });
 
-  // Initial strike after short delay
-  setTimeout(strike, 800);
-  scheduleNext();
+  observer.observe(statsBar);
 })();
+
+/* ============================================================
+   SERVICE PILLAR TILT — 3D tilt on mousemove
+============================================================ */
+/* ============================================================
+   EB REVEAL — Site-wide IntersectionObserver scroll reveal
+============================================================ */
+(function initEbReveal() {
+
+  // Selectors that get eb-reveal as a whole unit
+  var SECTION_SELECTORS = [
+    'section.stats-bar',
+    'section.pain-points',
+    'section.solution',
+    'section.services',
+    'section.process',
+    'section.projects',
+    'section.testimonials',
+    'section.faq',
+    'section.cta-final'
+  ];
+
+  // Selectors whose children each get eb-reveal with stagger
+  var CARD_SELECTORS = [
+    '.services-grid',
+    '.process-steps',
+    '.pricing-cards-grid',
+    '.faq-grid'
+  ];
+
+  // Collect all targets
+  var targets = [];
+
+  SECTION_SELECTORS.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.classList.add('eb-reveal');
+      targets.push({ el: el, stagger: false });
+    });
+  });
+
+  CARD_SELECTORS.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (parent) {
+      Array.from(parent.children).forEach(function (child, i) {
+        child.classList.add('eb-reveal');
+        child.style.transitionDelay = (i * 80) + 'ms';
+        targets.push({ el: child, stagger: true });
+      });
+    });
+  });
+
+  // Also handle individual items not in a known grid
+  ['.service-card', '.pricing-card', '.faq-item', '.process-steps .step'].forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, i) {
+      if (!el.classList.contains('eb-reveal')) {
+        el.classList.add('eb-reveal');
+        el.style.transitionDelay = (i % 4 * 80) + 'ms';
+        targets.push({ el: el, stagger: true });
+      }
+    });
+  });
+
+  if (!targets.length) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('eb-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  targets.forEach(function (t) {
+    // Sections already in viewport at load (scrollY === 0) get visible immediately
+    if (window.scrollY === 0 && t.el.getBoundingClientRect().top < window.innerHeight) {
+      t.el.classList.add('eb-visible');
+    } else {
+      observer.observe(t.el);
+    }
+  });
+
+})();
+
+/* ============================================================
+   PROCESS ANIMATION — Connecting line + spring step numbers
+============================================================ */
+(function initProcessAnim() {
+  var section = document.querySelector('section.process');
+  if (!section) return;
+  var line    = section.querySelector('.process-line');
+  var numbers = section.querySelectorAll('.step-number');
+
+  numbers.forEach(function (n) { n.style.transform = 'scale(0)'; });
+
+  var observer = new IntersectionObserver(function (entries, obs) {
+    if (!entries[0].isIntersecting) return;
+    obs.disconnect();
+
+    if (line) {
+      var isMobile = window.innerWidth <= 768;
+      if (isMobile) { line.style.height = '100%'; }
+      else          { line.style.width  = '100%'; }
+    }
+
+    [0, 400, 800].forEach(function (delay, i) {
+      if (!numbers[i]) return;
+      setTimeout(function () {
+        numbers[i].style.transition = 'transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)';
+        numbers[i].style.transform  = 'scale(1)';
+      }, delay);
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(section);
+})();
+
+/* ============================================================
+   SERVICE PILLAR TILT — 3D tilt on mousemove
+============================================================ */
+(function initTilt() {
+  document.querySelectorAll('.service-pillar').forEach(function (el) {
+    el.addEventListener('mousemove', function (e) {
+      var rect    = el.getBoundingClientRect();
+      var xRatio  = (e.clientX - rect.left)  / rect.width;
+      var yRatio  = (e.clientY - rect.top)   / rect.height;
+      var rotateY =  (xRatio - 0.5) * 12;
+      var rotateX = -(yRatio - 0.5) * 12;
+      el.style.transition = 'transform 100ms ease';
+      el.style.transform  = 'perspective(1200px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+    });
+
+    el.addEventListener('mouseleave', function () {
+      el.style.transition = 'transform 400ms ease';
+      el.style.transform  = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+    });
+  });
+})();
+
+/* ============================================================
+   TESTIMONIALS CAROUSEL — Crossfade autoplay, desktop only
+============================================================ */
+(function initTestimonials() {
+  if (!window.matchMedia('(min-width: 768px)').matches) return;
+
+  var cards  = document.querySelectorAll('.testimonial-card');
+  var dots   = document.querySelectorAll('.tc-dot');
+  var grid   = document.querySelector('.testimonials-grid');
+  if (cards.length < 2) return;
+
+  var current      = 0;
+  var paused       = false;
+  var transitioning = false;
+  var timer        = null;
+
+  function goTo(idx) {
+    if (transitioning) return;
+    var next = (idx + cards.length) % cards.length;
+    if (next === current) return;
+
+    transitioning = true;
+
+    // Fade out current
+    cards[current].classList.remove('tc-active');
+    if (dots[current]) dots[current].classList.remove('tc-dot-active');
+
+    // After fade-out completes, fade in next
+    setTimeout(function () {
+      current = next;
+      cards[current].classList.add('tc-active');
+      if (dots[current]) dots[current].classList.add('tc-dot-active');
+      transitioning = false;
+    }, 420);
+  }
+
+  function advance() {
+    if (!paused) goTo(current + 1);
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(advance, 4000);
+  }
+
+  // Pause autoplay on hover
+  if (grid) {
+    grid.addEventListener('mouseenter', function () { paused = true; });
+    grid.addEventListener('mouseleave', function () { paused = false; });
+  }
+
+  // Dot click → jump directly + restart timer
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(dot.dataset.tc, 10));
+      startTimer();
+    });
+  });
+
+  startTimer();
+})();
+
+/* ============================================================
+   FAQ ACCORDION — One open at a time, animated max-height
+============================================================ */
+(function initFAQ() {
+  var items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
+
+  function openItem(item) {
+    item.classList.add('faq-open');
+    var btn = item.querySelector('.faq-question');
+    var ans = item.querySelector('.faq-answer');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (ans) ans.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeItem(item) {
+    item.classList.remove('faq-open');
+    var btn = item.querySelector('.faq-question');
+    var ans = item.querySelector('.faq-answer');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (ans) ans.setAttribute('aria-hidden', 'true');
+  }
+
+  items.forEach(function (item) {
+    var btn = item.querySelector('.faq-question');
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+      var isOpen = item.classList.contains('faq-open');
+
+      // Close all items
+      items.forEach(closeItem);
+
+      // If it was closed, open it
+      if (!isOpen) openItem(item);
+    });
+  });
+})();
+
+/* ============================================================
+   CUSTOM CURSOR — Desktop only, lerp-smoothed ring
+   Usa transform (GPU composited) — no left/top para evitar layout thrashing
+============================================================ */
+(function initCustomCursor() {
+  if (!window.matchMedia('(min-width: 768px)').matches) return;
+
+  var dot  = document.createElement('div');
+  var ring = document.createElement('div');
+  dot.id   = 'cursor-dot';
+  ring.id  = 'cursor-ring';
+  document.body.appendChild(dot);
+  document.body.appendChild(ring);
+
+  // Posición objetivo (mouse) y posición actual del ring (lerped)
+  var tx = 0, ty = 0;
+  var rx = 0, ry = 0;
+
+  // Escala objetivo y actual — lerpeadas en el loop para transición suave
+  var dotST = 1, dotS = 1;
+  var rngST = 1, rngS = 1;
+
+  var firstMove = true;
+  var rafId     = null;
+
+  document.addEventListener('mousemove', function (e) {
+    tx = e.clientX;
+    ty = e.clientY;
+
+    if (firstMove) {
+      rx = tx; ry = ty;       // teleportar ring al cursor para evitar salto inicial
+      firstMove = false;
+      dot.style.opacity  = '1';
+      ring.style.opacity = '1';
+    }
+  }, { passive: true });
+
+  // Loop rAF: todo vía transform — GPU composited, sin layout recalculation
+  function tick() {
+    if (!firstMove) {
+      rx += (tx - rx) * 0.12;
+      ry += (ty - ry) * 0.12;
+      dotS += (dotST - dotS) * 0.18;
+      rngS += (rngST - rngS) * 0.12;
+
+      dot.style.transform  = 'translate(' + (tx - 3)  + 'px,' + (ty - 3)  + 'px) scale(' + dotS + ')';
+      ring.style.transform = 'translate(' + (rx - 12) + 'px,' + (ry - 12) + 'px) scale(' + rngS + ')';
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+  tick();
+
+  document.documentElement.addEventListener('mouseleave', function () {
+    dot.style.opacity  = '0';
+    ring.style.opacity = '0';
+  });
+  document.documentElement.addEventListener('mouseenter', function () {
+    if (!firstMove) {
+      dot.style.opacity  = '1';
+      ring.style.opacity = '1';
+    }
+  });
+
+  document.addEventListener('mouseover', function (e) {
+    var onHeading = !!e.target.closest('h1, h2');
+    var onLink    = !onHeading && !!e.target.closest('a, button, .btn');
+
+    ring.classList.toggle('cur-heading', onHeading);
+    ring.classList.toggle('cur-link',    onLink);
+
+    dotST = onLink    ? 0   : 1;
+    rngST = onHeading ? 2.5 : onLink ? 1.8 : 1;
+  }, { passive: true });
+})();
+
