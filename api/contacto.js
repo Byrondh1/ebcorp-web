@@ -58,7 +58,8 @@ function validar(body) {
   };
 
   if (!datos.nombre || !datos.email || !datos.servicio || !datos.mensaje) return null;
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) return null;
+  // Formato estricto: el correo va en reply_to y en un enlace mailto:, donde ? & , o comillas añadirían destinatarios
+  if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(datos.email)) return null;
   if (!SERVICIOS[datos.servicio]) return null;
   for (const campo of Object.keys(MAX)) {
     if (datos[campo].length > MAX[campo]) return null;
@@ -77,9 +78,46 @@ function fechaEcuador() {
   }).format(new Date());
 }
 
+// Número para wa.me: solo dígitos con código de país. Los móviles de Ecuador escritos
+// en formato local (09XXXXXXXX o 9XXXXXXXX) se completan con 593. Si no parece un
+// número válido se devuelve null y el correo no lleva botón de WhatsApp.
+function numeroWhatsApp(telefono) {
+  let digitos = telefono.replace(/\D/g, '');
+  if (!digitos) return null;
+  if (telefono.trim().startsWith('+')) {
+    // ya trae código de país
+  } else if (digitos.startsWith('00')) {
+    digitos = digitos.slice(2);
+  } else if (/^09\d{8}$/.test(digitos)) {
+    digitos = '593' + digitos.slice(1);
+  } else if (/^9\d{8}$/.test(digitos)) {
+    digitos = '593' + digitos;
+  }
+  if (digitos.startsWith('5930')) digitos = '593' + digitos.slice(4);
+  return /^[1-9]\d{7,14}$/.test(digitos) ? digitos : null;
+}
+
+// Botón compatible con clientes de correo: tabla con fondo y enlace con estilos en línea
+function boton(href, etiqueta, color) {
+  return (
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="display:inline-table;margin:0 8px 8px 0">' +
+    `<tr><td bgcolor="${color}" style="border-radius:8px;background:${color}">` +
+    `<a href="${escapar(href)}" target="_blank" style="display:inline-block;padding:14px 22px;font-family:Arial,sans-serif;` +
+    'font-size:16px;font-weight:bold;line-height:20px;color:#ffffff;text-decoration:none;border-radius:8px;' +
+    `mso-padding-alt:0">${escapar(etiqueta)}</a>` +
+    '</td></tr></table>'
+  );
+}
+
 function construirCorreo(d) {
   const servicio = SERVICIOS[d.servicio];
   const fecha = fechaEcuador();
+  const asunto = `[Web] ${servicio} — ${d.nombre}`;
+
+  const enlaceCorreo = `mailto:${d.email}?subject=${encodeURIComponent('Re: ' + asunto)}`;
+  const numero = d.telefono ? numeroWhatsApp(d.telefono) : null;
+  const saludo = `Hola ${d.nombre}, te escribimos de EB Corp por la consulta que dejaste en nuestro sitio web (${servicio}).`;
+  const enlaceWhatsApp = numero ? `https://wa.me/${numero}?text=${encodeURIComponent(saludo)}` : null;
   const filas = [
     ['Nombre', d.nombre],
     ['Empresa', d.empresa || '—'],
@@ -89,9 +127,18 @@ function construirCorreo(d) {
     ['Fecha (hora de Ecuador)', fecha],
   ];
 
-  const text = filas.map(([k, v]) => `${k}: ${v}`).join('\n') + `\n\nMensaje:\n${d.mensaje}\n`;
+  const text =
+    `Responder por correo: ${enlaceCorreo}\n` +
+    (enlaceWhatsApp ? `Responder por WhatsApp: ${enlaceWhatsApp}\n` : '') +
+    '\n' +
+    filas.map(([k, v]) => `${k}: ${v}`).join('\n') + `\n\nMensaje:\n${d.mensaje}\n`;
 
   const html =
+    '<p style="font-family:Arial,sans-serif;font-size:14px;color:#555;margin:0 0 10px">Responder al visitante:</p>' +
+    '<div style="margin:0 0 16px">' +
+    boton(enlaceCorreo, 'Responder por correo', '#1A2B5F') +
+    (enlaceWhatsApp ? boton(enlaceWhatsApp, 'Responder por WhatsApp', '#128C4B') : '') +
+    '</div>' +
     '<table cellpadding="6" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px">' +
     filas.map(([k, v]) =>
       `<tr><td style="color:#555;vertical-align:top"><strong>${escapar(k)}</strong></td><td>${escapar(v)}</td></tr>`
@@ -104,7 +151,7 @@ function construirCorreo(d) {
     from: FROM,
     to: [TO],
     reply_to: d.email,
-    subject: `[Web] ${servicio} — ${d.nombre}`,
+    subject: asunto,
     text,
     html,
   };
