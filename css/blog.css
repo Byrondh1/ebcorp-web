@@ -721,7 +721,8 @@
    RESPONSIVE
 ============================================================ */
 @media (max-width: 1024px) {
-  .article-layout { grid-template-columns: 1fr; }
+  /* minmax(0, …): con 1fr a secas, una tabla ancha estira la columna más allá de la pantalla */
+  .article-layout { grid-template-columns: minmax(0, 1fr); }
   .article-sidebar { position: static; }
 }
 
