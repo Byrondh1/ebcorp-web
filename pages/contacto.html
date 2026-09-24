@@ -301,7 +301,7 @@
 
       if (rules.required && !val) {
         error = 'Este campo es obligatorio';
-      } else if (rules.email && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      } else if (rules.email && val && !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(val)) {
         error = 'Ingresa un correo válido';
       } else if (rules.minLength && val && val.length < rules.minLength) {
         error = `Mínimo ${rules.minLength} caracteres`;
