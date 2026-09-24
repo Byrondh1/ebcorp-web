@@ -128,6 +128,7 @@ module.exports = async function handler(req, res) {
 
   // Campo trampa: un bot lo rellena. Se responde como si todo fuera bien y no se envía nada.
   if (texto(body.empresa_web)) {
+    console.log('[contacto] campo trampa con contenido: envío descartado');
     return res.status(200).json({ ok: true });
   }
 
@@ -158,6 +159,8 @@ module.exports = async function handler(req, res) {
       console.error(`[contacto] Resend respondió ${respuesta.status}: ${detalle}`);
       return res.status(502).json({ ok: false, error: 'No se pudo enviar el mensaje' });
     }
+    const enviado = await respuesta.json().catch(() => ({}));
+    console.log(`[contacto] correo aceptado por Resend, id ${enviado.id || 'desconocido'}`);
   } catch (error) {
     console.error('[contacto] Error al llamar a Resend:', error);
     return res.status(502).json({ ok: false, error: 'No se pudo enviar el mensaje' });
