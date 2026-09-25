@@ -541,6 +541,17 @@ p { line-height: 1.7; color: var(--color-gray-700); }
   padding-bottom: var(--space-20);
 }
 
+/* Titular del hero: isotipo + "Corp". La imagen se apoya en la línea base del texto
+   y mide 0.8em, algo más que la altura de mayúscula de Saira (0.7em). */
+.hero-isotipo {
+  display: inline-block;
+  height: 0.8em;
+  width: auto;
+  vertical-align: baseline;
+}
+
+.hero-corp { color: var(--color-white); }
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
