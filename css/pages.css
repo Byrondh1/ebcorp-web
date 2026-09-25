@@ -372,7 +372,7 @@
 
 .hours-row span { color: var(--color-gray-500); }
 .hours-row strong { color: var(--color-gray-900); font-weight: 600; }
-.hours-247 { color: var(--color-success) !important; }
+.hours-247 { color: var(--color-success-texto) !important; }
 
 /* Contact Form */
 .contact-form-wrap {

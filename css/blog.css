@@ -65,8 +65,20 @@
   border: 1px solid rgba(2, 125, 254, 0.3);
 }
 
-/* En las tarjetas de artículos relacionados la etiqueta va sobre blanco, no sobre la imagen */
-.related-card-body .blog-tag-electrical { color: var(--color-azul-texto); }
+/* En las tarjetas de artículos relacionados la etiqueta va sobre blanco, no sobre la imagen:
+   ambas en azul de texto, y cada una con su icono para distinguir la línea */
+.related-card-body .blog-tag-electrical,
+.related-card-body .blog-tag-digital { color: var(--color-azul-texto); }
+
+.related-card-body .blog-tag::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  margin-right: 0.4em;
+}
+
+/* El segundo content (con / '') marca el icono como decorativo donde el navegador lo admite */
+.related-card-body .blog-tag-electrical::before { content: '\f0e7'; content: '\f0e7' / ''; }
+.related-card-body .blog-tag-digital::before { content: '\f121'; content: '\f121' / ''; }
 
 .blog-tag-digital {
   background: rgba(8, 221, 240, 0.15);
