@@ -545,11 +545,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (!entries[0].isIntersecting) return;
     obs.disconnect();
 
-    if (line) {
-      var isMobile = window.innerWidth <= 768;
-      if (isMobile) { line.style.height = '100%'; }
-      else          { line.style.width  = '100%'; }
-    }
+    if (line) line.classList.add('is-drawn');
 
     [0, 400, 800].forEach(function (delay, i) {
       if (!numbers[i]) return;

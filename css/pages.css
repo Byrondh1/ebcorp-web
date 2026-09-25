@@ -82,14 +82,14 @@
 }
 
 .page-hero-content h1 span {
-  background: var(--gradient-marca);
+  background: var(--gradient-marca-texto);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .page-hero-digital .page-hero-content h1 span {
-  background: var(--gradient-marca);
+  background: var(--gradient-marca-texto);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
