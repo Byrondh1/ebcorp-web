@@ -43,7 +43,7 @@
 }
 
 .blog-img-electrical {
-  background: linear-gradient(135deg, #0F1A3D, #1A2B5F 60%, #2A1800);
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary) 60%, color-mix(in srgb, var(--color-azul) 25%, var(--color-primary-dark)));
 }
 
 .blog-img-digital {
@@ -60,15 +60,18 @@
 }
 
 .blog-tag-electrical {
-  background: rgba(245, 166, 35, 0.2);
-  color: #F5A623;
-  border: 1px solid rgba(245, 166, 35, 0.3);
+  background: rgba(2, 125, 254, 0.2);
+  color: var(--color-white);   /* va sobre imágenes oscuras: el azul no llega a AA en texto pequeño */
+  border: 1px solid rgba(2, 125, 254, 0.3);
 }
 
+/* En las tarjetas de artículos relacionados la etiqueta va sobre blanco, no sobre la imagen */
+.related-card-body .blog-tag-electrical { color: var(--color-azul-texto); }
+
 .blog-tag-digital {
-  background: rgba(0, 212, 255, 0.15);
-  color: #00D4FF;
-  border: 1px solid rgba(0, 212, 255, 0.25);
+  background: rgba(8, 221, 240, 0.15);
+  color: #08DDF0;
+  border: 1px solid rgba(8, 221, 240, 0.25);
 }
 
 .blog-read-time {
@@ -167,8 +170,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(8, 221, 240, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 221, 240, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -290,11 +293,11 @@
 }
 
 .callout-warning {
-  background: rgba(245, 166, 35, 0.08);
-  border: 1px solid rgba(245, 166, 35, 0.2);
+  background: rgba(232, 163, 61, 0.08);
+  border: 1px solid rgba(232, 163, 61, 0.2);
 }
-.callout-warning > i { color: var(--color-accent-yellow); }
-.callout-warning strong { color: var(--color-accent-yellow); }
+.callout-warning > i { color: var(--color-warning); }
+.callout-warning strong { color: var(--color-warning-texto); }
 
 .callout-danger {
   background: rgba(239, 68, 68, 0.06);
@@ -304,18 +307,18 @@
 .callout-danger strong { color: var(--color-danger); }
 
 .callout-info {
-  background: rgba(0, 212, 255, 0.06);
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  background: rgba(2, 125, 254, 0.06);
+  border: 1px solid rgba(2, 125, 254, 0.15);
 }
 .callout-info > i { color: var(--color-accent-electric); }
-.callout-info strong { color: var(--color-accent-electric); }
+.callout-info strong { color: var(--color-azul-texto); }
 
 .callout-success {
   background: rgba(39, 174, 96, 0.07);
   border: 1px solid rgba(39, 174, 96, 0.2);
 }
-.callout-success > i { color: #27ae60; }
-.callout-success strong { color: #27ae60; }
+.callout-success > i { color: var(--color-success); }
+.callout-success strong { color: var(--color-success-texto); }
 
 /* FAQ details/summary */
 .faq-item {
@@ -540,7 +543,7 @@
 
 .pro-con-list li > i { position: absolute; left: 0; top: 3px; }
 
-.pro-con-list .pro .fa-check { color: var(--color-accent-green); }
+.pro-con-list .pro .fa-check { color: var(--color-success); }
 .pro-con-list .con .fa-times { color: var(--color-danger); }
 
 /* Sidebar */
@@ -599,13 +602,13 @@
   width: 52px;
   height: 52px;
   border-radius: var(--radius-lg);
-  background: rgba(245, 166, 35, 0.12);
-  border: 1px solid rgba(245, 166, 35, 0.25);
+  background: rgba(2, 125, 254, 0.12);
+  border: 1px solid rgba(2, 125, 254, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  color: var(--color-accent-yellow);
+  color: var(--color-azul);
   margin: 0 auto var(--space-4);
 }
 
@@ -646,7 +649,7 @@
 }
 
 .checklist-ok {
-  color: #27ae60;
+  color: var(--color-success);
   font-size: 1.1rem;
   flex-shrink: 0;
   margin-top: 0.1rem;
