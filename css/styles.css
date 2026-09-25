@@ -41,6 +41,8 @@
   --color-azul-texto:     #0057B8;   /* solo enlaces y texto pequeño azul sobre fondo claro (6,9:1 sobre blanco) */
 
   --gradient-marca: linear-gradient(120deg, #026EFF 0%, #069AFC 50%, #08DDF0 100%);
+  /* Para texto sobre fondo oscuro: sin el tramo #026EFF, que baja a 2,6:1 sobre el azul de algunos heros */
+  --gradient-marca-texto: linear-gradient(120deg, #069AFC 0%, #08DDF0 100%);
 
   /* Funcionales — NO son colores de marca, solo estados de interfaz */
   --color-warning: #E8A33D;   /* avisos de riesgo eléctrico en el blog */
@@ -233,6 +235,14 @@ p { line-height: 1.7; color: var(--color-gray-700); }
 }
 
 .section-header h2 { margin-bottom: var(--space-4); }
+
+/* Degradado como relleno de texto: solo en una palabra o frase corta de un título sobre fondo oscuro */
+.texto-degradado {
+  background: var(--gradient-marca-texto);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 .section-desc {
   font-size: var(--text-lg);
@@ -1182,7 +1192,9 @@ p { line-height: 1.7; color: var(--color-gray-700); }
 /* ============================================================
    12. PROCESS
    ============================================================ */
+/* Altura del centro de los círculos: número (4rem, line-height 1) + su margen + medio círculo - medio trazo */
 .process {
+  --process-eje: calc(4rem + var(--space-2) + 29px);
   background: var(--color-dark-2);
   position: relative;
   overflow: hidden;
@@ -1197,6 +1209,8 @@ p { line-height: 1.7; color: var(--color-gray-700); }
     linear-gradient(90deg, rgba(8, 221, 240, 0.02) 1px, transparent 1px);
   background-size: 80px 80px;
 }
+
+.process .section-header h2 { color: var(--color-white); }
 
 .process-steps {
   display: flex;
@@ -1218,29 +1232,32 @@ p { line-height: 1.7; color: var(--color-gray-700); }
   font-family: var(--font-display);
   font-size: 4rem;
   font-weight: 700;
-  color: rgba(8, 221, 240, 0.08);
+  color: rgba(8, 221, 240, 0.3);
   line-height: 1;
   margin-bottom: var(--space-2);
   letter-spacing: -0.03em;
 }
 
+/* Fondo opaco (tinte sobre el color de la sección) para que la línea pase por detrás del círculo */
 .step-icon {
+  position: relative;
+  z-index: 1;
   width: 60px;
   height: 60px;
   border-radius: var(--radius-full);
-  background: rgba(8, 221, 240, 0.1);
+  background: linear-gradient(rgba(8, 221, 240, 0.1), rgba(8, 221, 240, 0.1)), var(--color-dark-2);
   border: 1px solid rgba(8, 221, 240, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
   color: var(--color-cian);
-  margin-bottom: var(--space-4);
+  margin: 0 auto var(--space-4);
   transition: all var(--transition-base);
 }
 
 .process-step:hover .step-icon {
-  background: rgba(8, 221, 240, 0.2);
+  background: linear-gradient(rgba(8, 221, 240, 0.2), rgba(8, 221, 240, 0.2)), var(--color-dark-2);
   box-shadow: var(--shadow-glow-electric);
   transform: scale(1.05);
 }
@@ -1263,7 +1280,7 @@ p { line-height: 1.7; color: var(--color-gray-700); }
   width: 60px;
   height: 2px;
   background: linear-gradient(90deg, rgba(8, 221, 240, 0.2), rgba(8, 221, 240, 0.4), rgba(8, 221, 240, 0.2));
-  margin-top: 76px;
+  margin-top: var(--process-eje);
   position: relative;
 }
 
@@ -2334,25 +2351,26 @@ p { line-height: 1.7; color: var(--color-gray-700); }
 /* ============================================================
    PROCESS — Connecting line + spring step numbers
 ============================================================ */
+/* Une los centros de los círculos: de la mitad de la primera columna a la mitad de la última
+   (las columnas reparten el ancho menos los dos conectores de 60px) */
 .process-line {
   position: absolute;
-  top: 2rem;
-  left: 5%;
-  width: 0;
+  top: var(--process-eje);
+  left: calc((100% - 120px) / 6);
+  right: calc((100% - 120px) / 6);
   height: 2px;
-  background: linear-gradient(90deg, var(--color-azul), var(--color-primary));
+  background: linear-gradient(90deg, var(--color-azul), var(--color-cian));
   z-index: 0;
-  transition: width 1200ms ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1200ms ease-in-out;
 }
 
+.process-line.is-drawn { transform: scaleX(1); }
+
+/* En columna, una línea vertical cruzaría números y textos: quedan solo los conectores entre pasos */
 @media (max-width: 768px) {
-  .process-line {
-    top: 5%;
-    left: calc(50% - 1px);
-    width: 2px;
-    height: 0;
-    transition: height 1200ms ease-in-out;
-  }
+  .process-line { display: none; }
 }
 
 /* ============================================================
