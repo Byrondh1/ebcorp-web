@@ -38,6 +38,8 @@
   <meta name="theme-color" content="#1B242C">
 
   <style>
+    /* Los estilos del texto legal (blanco sobre oscuro) necesitan el fondo oscuro de la página */
+    body { background: var(--color-dark); }
     .legal-body {
       max-width: 820px;
       margin: 0 auto;
@@ -62,6 +64,7 @@
       margin-bottom: var(--space-2);
     }
     .legal-body p {
+      color: inherit;   /* la regla global de p (gris oscuro) no se ve sobre este fondo */
       margin-bottom: var(--space-4);
     }
     .legal-body ul {
@@ -82,14 +85,14 @@
       font-weight: 700;
     }
     .legal-body a {
-      color: var(--color-azul-texto);
+      color: var(--color-cian);
       text-decoration: underline;
     }
     .legal-updated {
       display: inline-block;
-      background: rgba(2, 125, 254, 0.1);
-      border: 1px solid rgba(2, 125, 254, 0.25);
-      color: var(--color-azul-texto);
+      background: rgba(8, 221, 240, 0.08);
+      border: 1px solid rgba(8, 221, 240, 0.25);
+      color: var(--color-cian);
       font-size: var(--text-sm);
       font-weight: 500;
       padding: 0.35rem 1rem;
@@ -127,7 +130,7 @@
       transition: color 0.2s;
     }
     .legal-toc ol li a:hover {
-      color: var(--color-azul);
+      color: var(--color-cian);
     }
     .legal-highlight {
       background: rgba(2, 125, 254, 0.06);
