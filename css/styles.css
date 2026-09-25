@@ -1211,6 +1211,7 @@ p { line-height: 1.7; color: var(--color-gray-700); }
 }
 
 .process .section-header h2 { color: var(--color-white); }
+.process .section-desc { color: rgba(255, 255, 255, 0.55); }   /* 6:1; el gris general da 3,6:1 aquí */
 
 .process-steps {
   display: flex;
@@ -1485,7 +1486,7 @@ p { line-height: 1.7; color: var(--color-gray-700); }
   display: flex;
   gap: var(--space-4);
   font-size: var(--text-xs);
-  color: var(--color-gray-400, #9CA3AF);
+  color: var(--color-gray-500);
   font-weight: 500;
 }
 
