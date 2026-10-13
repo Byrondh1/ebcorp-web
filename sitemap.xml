@@ -62,9 +62,31 @@
   <!-- Blog -->
   <url>
     <loc>https://ebcorp.dev/pages/blog/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Blog: Velocidad de carga -->
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/velocidad-carga-pagina-web-ecuador.html</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.dev/pages/blog/velocidad-carga-pagina-web-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.dev/pages/blog/en/website-loading-speed-ecuador-businesses.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ebcorp.dev/pages/blog/velocidad-carga-pagina-web-ecuador.html" />
+  </url>
+
+  <!-- Blog: Velocidad de carga (EN) -->
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/en/website-loading-speed-ecuador-businesses.html</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.dev/pages/blog/velocidad-carga-pagina-web-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.dev/pages/blog/en/website-loading-speed-ecuador-businesses.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ebcorp.dev/pages/blog/velocidad-carga-pagina-web-ecuador.html" />
   </url>
 
   <!-- Blog: Factor de Potencia -->
