@@ -62,9 +62,30 @@
   <!-- Blog -->
   <url>
     <loc>https://ebcorp.dev/pages/blog/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Blog: Web barata vs profesional -->
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/pagina-web-barata-vs-profesional-ecuador.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.dev/pages/blog/pagina-web-barata-vs-profesional-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.dev/pages/blog/en/cheap-vs-professional-website-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ebcorp.dev/pages/blog/pagina-web-barata-vs-profesional-ecuador.html" />
+  </url>
+
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/en/cheap-vs-professional-website-ecuador.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.dev/pages/blog/pagina-web-barata-vs-profesional-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.dev/pages/blog/en/cheap-vs-professional-website-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ebcorp.dev/pages/blog/pagina-web-barata-vs-profesional-ecuador.html" />
   </url>
 
   <!-- Blog: Factor de Potencia -->
