@@ -62,9 +62,31 @@
   <!-- Blog -->
   <url>
     <loc>https://ebcorp.dev/pages/blog/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Blog: Google Business Profile -->
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/google-business-profile-empresas-ecuador.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.dev/pages/blog/google-business-profile-empresas-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.dev/pages/blog/en/google-business-profile-ecuador-guide.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ebcorp.dev/pages/blog/google-business-profile-empresas-ecuador.html" />
+  </url>
+
+  <!-- Blog: Google Business Profile (EN) -->
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/en/google-business-profile-ecuador-guide.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es-EC" href="https://ebcorp.dev/pages/blog/google-business-profile-empresas-ecuador.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ebcorp.dev/pages/blog/en/google-business-profile-ecuador-guide.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ebcorp.dev/pages/blog/google-business-profile-empresas-ecuador.html" />
   </url>
 
   <!-- Blog: Factor de Potencia -->
