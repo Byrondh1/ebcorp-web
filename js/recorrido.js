@@ -30,14 +30,16 @@
   // Paso del indicador según P (CIUDAD, SUBESTACIÓN, TRANSFORMADOR, DISEÑO)
   var INICIO_PASO = [0, 0.85, 1.9, 3.6];
 
-  // 960×540 (5,2 MB) en teléfonos o conexiones lentas; 1280×720 (7,9 MB) en el resto.
-  // Ambos son MP4 fragmentados (un fragmento cada 10 cuadros) para poder añadirlos
+  // Pantallas verticales: film-mobile (608×1080, recorte central de los clips en 1080p),
+  // sea cual sea la conexión. Horizontales: film-720, o film-540 si la conexión es lenta.
+  // Todos son MP4 fragmentados (un fragmento cada 10 cuadros) para poder añadirlos
   // por partes a un MediaSource mientras se descargan.
-  var movil = window.matchMedia('(max-width: 767px)').matches;
+  var vertical = window.matchMedia('(orientation: portrait)').matches;
   var conexion = navigator.connection;
   var lenta = !!conexion && (conexion.saveData || /2g|3g/.test(conexion.effectiveType || '') ||
     (conexion.downlink > 0 && conexion.downlink < 5));
-  var fuente = (movil || lenta) ? 'assets/video/film-540.mp4' : 'assets/video/film-720.mp4';
+  var fuente = vertical ? 'assets/video/film-mobile.mp4'
+    : (lenta ? 'assets/video/film-540.mp4' : 'assets/video/film-720.mp4');
   var TIPO = 'video/mp4; codecs="avc1.64001F"';
 
   var medio  = seccion.querySelector('.recorrido-medio');
