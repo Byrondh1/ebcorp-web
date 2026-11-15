@@ -3,8 +3,9 @@
  * El scroll dentro de .recorrido avanza una película de 19,9 s.
  * P = progreso (0–1) × 4,2. Tiempo del video = min(P, 4) / 4 × 19,9;
  * el último tramo (P 4–4,2) mantiene el fotograma final.
- * Sin JS o con prefers-reduced-motion la sección queda en modo estático
- * (cuatro escenas apiladas con su fotograma y su texto).
+ * El video se descarga una sola vez, en orden, y se añade a un MediaSource
+ * mientras llega. Sin JS o con prefers-reduced-motion la sección queda en
+ * modo estático (cuatro escenas apiladas con su fotograma y su texto).
  */
 (function () {
   'use strict';
@@ -29,8 +30,15 @@
   // Paso del indicador según P (CIUDAD, SUBESTACIÓN, TRANSFORMADOR, DISEÑO)
   var INICIO_PASO = [0, 0.85, 1.9, 3.6];
 
-  // Un solo archivo para escritorio y móvil (1280×720, 7,9 MB)
-  var fuente = 'assets/video/film-720.mp4';
+  // 960×540 (5,2 MB) en teléfonos o conexiones lentas; 1280×720 (7,9 MB) en el resto.
+  // Ambos son MP4 fragmentados (un fragmento cada 10 cuadros) para poder añadirlos
+  // por partes a un MediaSource mientras se descargan.
+  var movil = window.matchMedia('(max-width: 767px)').matches;
+  var conexion = navigator.connection;
+  var lenta = !!conexion && (conexion.saveData || /2g|3g/.test(conexion.effectiveType || '') ||
+    (conexion.downlink > 0 && conexion.downlink < 5));
+  var fuente = (movil || lenta) ? 'assets/video/film-540.mp4' : 'assets/video/film-720.mp4';
+  var TIPO = 'video/mp4; codecs="avc1.64001F"';
 
   var medio  = seccion.querySelector('.recorrido-medio');
   var video  = seccion.querySelector('.recorrido-video');
@@ -43,6 +51,8 @@
   seccion.classList.add('recorrido--activo');
 
   var listo = false;
+  var modoMSE = false;      // datos añadidos en orden: solo se puede buscar en lo ya descargado
+  var cargaCompleta = false;
   var tiempoObjetivo = 0;
   var pasoActual = -1;
   var rafPendiente = false;
@@ -59,10 +69,21 @@
     return Math.min(1, Math.max(0, -caja.top / recorrible));
   }
 
+  // Con MediaSource, buscar más allá de lo descargado dejaría el video esperando
+  // (y bloquearía las búsquedas siguientes): se muestra el último cuadro disponible
+  // y se avanza solo a medida que llegan datos.
+  function tiempoPosible(t) {
+    if (!modoMSE || cargaCompleta) return t;
+    var b = video.buffered;
+    if (!b.length || b.start(0) > 0.1) return 0;
+    return Math.min(t, Math.max(0, b.end(0) - 0.05));
+  }
+
   function buscar() {
     if (!listo || video.seeking) return; // se reintenta en 'seeked'
-    if (Math.abs(video.currentTime - tiempoObjetivo) > 0.001) {
-      video.currentTime = tiempoObjetivo;
+    var t = tiempoPosible(tiempoObjetivo);
+    if (Math.abs(video.currentTime - t) > 0.001) {
+      video.currentTime = t;
     }
   }
 
@@ -118,26 +139,157 @@
   video.addEventListener('seeked', buscar);
   actualizar();
 
-  // El video se reproduce por streaming (moov al inicio con +faststart): en cuanto hay
-  // datos del primer cuadro se puede buscar; las zonas aún no descargadas se piden
-  // con peticiones de rango y el navegador sigue precargando el resto (preload auto).
-  video.addEventListener('loadeddata', function alCargar() {
-    video.removeEventListener('loadeddata', alCargar);
-    listo = true;
-    buscar();
-    // Se quita el fotograma fijo cuando el video ya muestra el cuadro pedido
-    if (!video.seeking && Math.abs(video.currentTime - tiempoObjetivo) <= 0.001) {
-      medio.classList.add('is-listo');
-    } else {
-      video.addEventListener('seeked', function alBuscar() {
-        video.removeEventListener('seeked', alBuscar);
-        medio.classList.add('is-listo');
-      });
+  // Quita el fotograma fijo cuando el video ya muestra un cuadro
+  function alPrimerCuadro(el) {
+    el.addEventListener('loadeddata', function alCargar() {
+      el.removeEventListener('loadeddata', alCargar);
+      listo = true;
+      buscar();
+      if (!el.seeking) medio.classList.add('is-listo');
+      else el.addEventListener('seeked', function () { medio.classList.add('is-listo'); }, { once: true });
+    });
+  }
+
+  function prepararElemento(el) {
+    el.muted = true;
+    el.playsInline = true;
+    el.disableRemotePlayback = true; // lo exige ManagedMediaSource en iOS
+  }
+
+  // ---------- Opción principal: una sola descarga en orden con fetch → MediaSource ----------
+  // Así ninguna búsqueda cancela la descarga (con src directo, cada salto de currentTime
+  // a una zona sin datos abortaba la petición de rango y el navegador dejaba huecos)
+  // y el archivo termina de bajar aunque el usuario siga haciendo scroll.
+  function cargarConMediaSource(MS) {
+    var ms = new MS();
+    modoMSE = true;
+    prepararElemento(video);
+    alPrimerCuadro(video);
+    video.src = URL.createObjectURL(ms);
+
+    ms.addEventListener('sourceopen', function () {
+      var sb;
+      try { sb = ms.addSourceBuffer(TIPO); } catch (e) { return cargarRespaldo(); }
+      var cola = [];
+      var bytesEnCola = 0;
+      var terminado = false;
+
+      function bombear() {
+        if (sb.updating || ms.readyState !== 'open') return;
+        if (cola.length) {
+          // Junta lo que llegó mientras el buffer estaba ocupado en un solo append
+          var junto = new Uint8Array(bytesEnCola);
+          var pos = 0;
+          cola.forEach(function (c) { junto.set(c, pos); pos += c.length; });
+          cola = [];
+          bytesEnCola = 0;
+          try { sb.appendBuffer(junto); } catch (e) { fallar(); }
+        } else if (terminado) {
+          ms.endOfStream();
+          cargaCompleta = true;
+          buscar();
+        }
+      }
+
+      function fallar() {
+        terminado = true;
+        modoMSE = false;
+        cargarRespaldo();
+      }
+
+      sb.addEventListener('updateend', function () { bombear(); buscar(); });
+      sb.addEventListener('error', fallar);
+
+      fetch(fuente).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        if (!r.body || !r.body.getReader) {
+          return r.arrayBuffer().then(function (b) {
+            cola.push(new Uint8Array(b)); bytesEnCola = b.byteLength; terminado = true; bombear();
+          });
+        }
+        var lector = r.body.getReader();
+        return (function leer() {
+          return lector.read().then(function (parte) {
+            if (parte.done) { terminado = true; bombear(); return; }
+            cola.push(parte.value);
+            bytesEnCola += parte.value.length;
+            bombear();
+            return leer();
+          });
+        })();
+      }).catch(fallar);
+    }, { once: true });
+  }
+
+  // ---------- Respaldo sin MediaSource (iPhone con iOS < 17.1, por ejemplo) ----------
+  // Arranca con streaming para moverse cuanto antes y, en paralelo, descarga el archivo
+  // completo; cuando está listo cambia a un video con el blob, ya situado en el mismo
+  // cuadro y colocado debajo del actual, así que el cambio no se ve.
+  function cargarRespaldo() {
+    modoMSE = false;
+    var actual = video;
+    prepararElemento(actual);
+    actual.preload = 'auto';
+    if (!listo) alPrimerCuadro(actual);
+    actual.src = fuente;
+
+    if (!window.fetch) return;
+    // La descarga completa empieza cuando el navegador deja de precargar el streaming
+    // (o a los 8 s), para que no compitan por el ancho de banda al principio.
+    var empezada = false;
+    function empezarDescarga() {
+      if (empezada) return;
+      empezada = true;
+      clearTimeout(espera);
+      descargarCompleto();
     }
-  });
-  // Si el video no carga, queda el fotograma de la escena 1 y los textos siguen funcionando
-  video.muted = true;
-  video.playsInline = true;
-  video.preload = 'auto';
-  video.src = fuente;
+    var espera = setTimeout(empezarDescarga, 8000);
+    actual.addEventListener('suspend', empezarDescarga, { once: true });
+    actual.addEventListener('canplaythrough', empezarDescarga, { once: true });
+  }
+
+  function descargarCompleto() {
+    var actual = video;
+    fetch(fuente).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.blob();
+    }).then(function (blob) {
+      var nuevo = actual.cloneNode(false);
+      nuevo.removeAttribute('src');
+      prepararElemento(nuevo);
+      nuevo.preload = 'auto';
+      medio.insertBefore(nuevo, actual); // debajo del video visible
+      function situar() {
+        if (Math.abs(nuevo.currentTime - tiempoObjetivo) > 0.001) {
+          nuevo.currentTime = tiempoObjetivo;
+          return;
+        }
+        nuevo.removeEventListener('seeked', situar);
+        actual.removeEventListener('seeked', buscar);
+        actual.removeAttribute('src');
+        actual.load();
+        actual.remove();
+        video = nuevo;
+        cargaCompleta = true;
+        listo = true;
+        medio.classList.add('is-listo');
+        video.addEventListener('seeked', buscar);
+        buscar();
+      }
+      nuevo.addEventListener('loadeddata', function () {
+        nuevo.addEventListener('seeked', situar);
+        situar();
+      }, { once: true });
+      nuevo.src = URL.createObjectURL(blob);
+    }).catch(function () {
+      // Se queda el streaming; si tampoco carga, queda el fotograma de la escena 1
+    });
+  }
+
+  var MS = window.ManagedMediaSource || window.MediaSource;
+  if (MS && MS.isTypeSupported && MS.isTypeSupported(TIPO) && window.fetch) {
+    cargarConMediaSource(MS);
+  } else {
+    cargarRespaldo();
+  }
 })();
