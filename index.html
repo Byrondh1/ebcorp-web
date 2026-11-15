@@ -69,7 +69,7 @@
     "name": "EB Corp — Electrical Business Corporation",
     "description": "Ingeniería eléctrica industrial y desarrollo web profesional en Carchi e Imbabura, Ecuador.",
     "url": "https://ebcorp.dev",
-    "telephone": "+593961699925",
+    "telephone": "+593982856740",
     "email": "contacto@ebcorp.dev",
     "address": {
       "@type": "PostalAddress",
@@ -165,6 +165,7 @@
   <!-- Styles -->
   <link rel="preload" href="css/styles.css" as="style" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/recorrido.css" />
 
   <!-- Favicon + PWA -->
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -199,7 +200,7 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20me%20interesa%20cotizar%20un%20servicio"
+        <a href="https://wa.me/593982856740?text=Hola%20EB%20Corp,%20me%20interesa%20cotizar%20un%20servicio"
            class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
           <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
@@ -213,70 +214,85 @@
   <main id="main-content">
 
     <!-- ============================================================
-         HERO — Objetivo: Impacto inmediato + propuesta de valor clara
-         Psicología: Claridad > originalidad. El visitante debe entender
-         en 5 segundos qué hace EB Corp y por qué importa.
+         RECORRIDO — Hero con película controlada por scroll
+         (css/recorrido.css + js/recorrido.js). Sin JS o con
+         movimiento reducido se ven las cuatro escenas apiladas.
     ============================================================ -->
-    <section class="hero" id="inicio" aria-labelledby="hero-heading">
-      <div class="hero-bg-grid" aria-hidden="true"></div>
-
-      <!-- Lightning background effect -->
-      <div class="hero-lightning-bg" aria-hidden="true">
-        <svg class="bolt bolt-1" viewBox="0 0 60 300" xmlns="http://www.w3.org/2000/svg"><polyline points="30,0 10,110 28,110 5,300" fill="none" stroke="white" stroke-width="1.5"/></svg>
-        <svg class="bolt bolt-2" viewBox="0 0 60 260" xmlns="http://www.w3.org/2000/svg"><polyline points="20,0 40,90 22,90 45,260" fill="none" stroke="#08DDF0" stroke-width="1"/></svg>
-        <svg class="bolt bolt-3" viewBox="0 0 50 220" xmlns="http://www.w3.org/2000/svg"><polyline points="10,0 32,80 18,80 38,220" fill="none" stroke="white" stroke-width="2"/></svg>
-        <svg class="bolt bolt-4" viewBox="0 0 60 280" xmlns="http://www.w3.org/2000/svg"><polyline points="35,0 15,100 30,100 8,280" fill="none" stroke="#08DDF0" stroke-width="1.5"/></svg>
-        <svg class="bolt bolt-5" viewBox="0 0 50 200" xmlns="http://www.w3.org/2000/svg"><polyline points="25,0 8,70 22,70 5,200" fill="none" stroke="white" stroke-width="1"/></svg>
-        <svg class="bolt bolt-6" viewBox="0 0 60 320" xmlns="http://www.w3.org/2000/svg"><polyline points="15,0 38,120 20,120 42,320" fill="none" stroke="#08DDF0" stroke-width="2"/></svg>
-        <svg class="bolt bolt-7" viewBox="0 0 50 240" xmlns="http://www.w3.org/2000/svg"><polyline points="28,0 12,85 26,85 10,240" fill="none" stroke="white" stroke-width="1.5"/></svg>
-        <svg class="bolt bolt-8" viewBox="0 0 60 260" xmlns="http://www.w3.org/2000/svg"><polyline points="40,0 18,95 34,95 14,260" fill="none" stroke="#08DDF0" stroke-width="1"/></svg>
-      </div>
-
-      <div class="hero-particles" aria-hidden="true" id="heroParticles"></div>
-
-      <div class="container hero-content">
-        <h1 id="hero-heading" data-aos="fade-up" data-aos-delay="100" style="text-align:center;margin-bottom:12px;font-family:var(--font-display);font-size:clamp(3.5rem,12vw,6rem);font-weight:700;letter-spacing:4px;line-height:1.1;opacity:0;transform:translateY(30px);">
-          <img class="hero-isotipo" src="assets/images/ebcorp-isotipo-blanco.svg" alt="EB" width="458" height="259"> <span class="hero-corp">Corp</span>
-        </h1>
-        <p data-aos="fade-up" data-aos-delay="150" style="text-align:center;font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:0.3em;color:var(--color-cian);margin:0 0 24px;opacity:0;">
-          ELECTRICAL BUSINESS CORPORATION
-        </p>
-
-        <p class="hero-sub" data-aos="fade-up" data-aos-delay="200" style="opacity:0;transform:translateY(15px);">
-          Ingeniería eléctrica de alto nivel y desarrollo web profesional.<br class="break-desktop" />
-          Potenciamos empresas e industrias en el mundo físico y digital.
-        </p>
-
-        <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="300" style="opacity:0;transform:scale(0.95)">
-          <a href="pages/cotizador.html" class="btn btn-primary btn-lg">
-            <i class="fas fa-calculator"></i> Cotizar proyecto
-          </a>
-          <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20quiero%20cotizar%20un%20proyecto"
-             class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i> WhatsApp directo
-          </a>
+    <section class="recorrido" id="inicio" aria-labelledby="hero-heading">
+      <div class="recorrido-escenario">
+        <div class="recorrido-medio" aria-hidden="true">
+          <img class="recorrido-poster" src="assets/video/escena-1.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+          <video class="recorrido-video" muted playsinline preload="auto" tabindex="-1" disablepictureinpicture></video>
+          <div class="recorrido-velo"></div>
         </div>
 
-        <div class="hero-split" data-aos="fade-up" data-aos-delay="400" aria-label="Nuestras dos especialidades">
-          <div class="hero-split-card">
-            <div class="hero-split-icon electrical">
-              <i class="fas fa-bolt"></i>
+        <div class="recorrido-escena">
+          <img class="recorrido-foto" src="assets/video/escena-1.jpg" alt="" width="1920" height="1080" loading="lazy">
+          <div class="container">
+            <div class="recorrido-texto">
+              <h1 class="recorrido-marca" id="hero-heading">
+                <img src="assets/images/ebcorp-logo-vertical-blanco.svg" alt="EB Corp" width="501" height="412">
+              </h1>
+              <p class="recorrido-marca-nombre">Electrical Business Corporation</p>
+              <p class="recorrido-cuerpo">Ingeniería eléctrica y desarrollo web para comercio e industria en el norte del Ecuador.</p>
+              <p class="recorrido-pista" aria-hidden="true">
+                Baja para seguir la energía
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg>
+              </p>
             </div>
-            <span>Ingeniería Eléctrica</span>
-          </div>
-          <div class="hero-split-divider" aria-hidden="true">+</div>
-          <div class="hero-split-card">
-            <div class="hero-split-icon digital">
-              <i class="fas fa-code"></i>
-            </div>
-            <span>Desarrollo Web</span>
           </div>
         </div>
-      </div>
 
-      <div class="hero-scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
+        <div class="recorrido-escena">
+          <img class="recorrido-foto" src="assets/video/escena-2.jpg" alt="" width="1920" height="1080" loading="lazy">
+          <div class="container">
+            <div class="recorrido-texto">
+              <p class="recorrido-etiqueta">01 · Subestación</p>
+              <h2 class="recorrido-titulo">Aquí empieza nuestro trabajo.</h2>
+              <p class="recorrido-cuerpo">Diseñamos, instalamos y mantenemos sistemas eléctricos en generación, transmisión, distribución y consumo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="recorrido-escena">
+          <img class="recorrido-foto" src="assets/video/escena-3.jpg" alt="" width="1920" height="1080" loading="lazy">
+          <div class="container">
+            <div class="recorrido-texto">
+              <p class="recorrido-etiqueta">02 · Transformador</p>
+              <h2 class="recorrido-titulo">Conocemos cada pieza.</h2>
+              <ul class="recorrido-lista">
+                <li>Diseño de proyectos eléctricos</li>
+                <li>Instalaciones eléctricas</li>
+                <li>Mantenimiento eléctrico</li>
+                <li>Automatización y domótica</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="recorrido-escena">
+          <img class="recorrido-foto" src="assets/video/escena-4.jpg" alt="" width="1920" height="1080" loading="lazy">
+          <div class="container">
+            <div class="recorrido-texto">
+              <p class="recorrido-etiqueta">03 · Estudio de diseño</p>
+              <h2 class="recorrido-titulo">Con esa energía construimos sitios web y aplicaciones.</h2>
+              <ul class="recorrido-lista">
+                <li>Diseño de páginas web</li>
+                <li>Tiendas en línea</li>
+                <li>Desarrollo de aplicaciones</li>
+                <li>Mantenimiento web</li>
+              </ul>
+              <a href="#contacto" class="recorrido-boton">Solicita una cotización</a>
+            </div>
+          </div>
+        </div>
+
+        <ol class="recorrido-pasos" aria-label="Recorrido">
+          <li>CIUDAD</li>
+          <li>SUBESTACIÓN</li>
+          <li>TRANSFORMADOR</li>
+          <li>DISEÑO</li>
+        </ol>
       </div>
     </section>
 
@@ -390,7 +406,7 @@
                 <span>Soporte 24/7 y acompañamiento post-entrega</span>
               </li>
             </ul>
-            <a href="https://wa.me/593961699925?text=Quiero%20conocer%20más%20sobre%20EB%20Corp"
+            <a href="https://wa.me/593982856740?text=Quiero%20conocer%20más%20sobre%20EB%20Corp"
                class="btn btn-primary" target="_blank" rel="noopener">
               Conocer más <i class="fas fa-arrow-right"></i>
             </a>
@@ -883,12 +899,12 @@
           <p>Cuéntanos tu proyecto — eléctrico, web, o ambos. La consulta inicial es completamente gratuita.</p>
 
           <div class="cta-buttons">
-            <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20quiero%20cotizar%20un%20proyecto"
+            <a href="https://wa.me/593982856740?text=Hola%20EB%20Corp,%20quiero%20cotizar%20un%20proyecto"
                class="btn btn-whatsapp btn-xl" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
               <i class="fab fa-whatsapp"></i>
               <span>
                 <strong>Escríbenos por WhatsApp</strong>
-                <small>+593 961 699 925</small>
+                <small>+593 98 285 6740</small>
               </span>
             </a>
             <a href="mailto:contacto@ebcorp.dev" class="btn btn-email btn-xl" aria-label="Enviar correo electrónico">
@@ -926,7 +942,7 @@
             <a href="https://www.instagram.com/eb_corp1" target="_blank" rel="noopener" aria-label="Instagram de EB Corp">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://wa.me/593961699925" target="_blank" rel="noopener" aria-label="WhatsApp de EB Corp">
+            <a href="https://wa.me/593982856740" target="_blank" rel="noopener" aria-label="WhatsApp de EB Corp">
               <i class="fab fa-whatsapp"></i>
             </a>
           </div>
@@ -958,7 +974,7 @@
           <ul class="footer-contact">
             <li>
               <i class="fab fa-whatsapp"></i>
-              <a href="https://wa.me/593961699925" target="_blank" rel="noopener">+593 961 699 925</a>
+              <a href="https://wa.me/593982856740" target="_blank" rel="noopener">+593 98 285 6740</a>
             </li>
             <li>
               <i class="fas fa-envelope"></i>
@@ -977,14 +993,17 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 EB Corp — Electrical Business Corporation. Todos los derechos reservados.</p>
-        <p>Carchi e Imbabura, Ecuador &nbsp;·&nbsp; NEC / IEC Certified &nbsp;·&nbsp; <a href="pages/terminos.html" style="color:rgba(255,255,255,0.45);">Términos y condiciones</a></p>
+        <p>&copy; 2026 EB Corp · Carchi, Ecuador</p>
+        <p class="footer-bottom-contacto">
+          <a href="tel:+593982856740">+593 98 285 6740</a>
+          <a href="mailto:contacto@ebcorp.dev">contacto@ebcorp.dev</a>
+        </p>
       </div>
     </div>
   </footer>
 
   <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20necesito%20información"
+  <a href="https://wa.me/593982856740?text=Hola%20EB%20Corp,%20necesito%20información"
      class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
     <i class="fab fa-whatsapp"></i>
     <span class="fab-tooltip">¿Necesitas ayuda?</span>
@@ -1004,6 +1023,7 @@
 
   <!-- Scripts -->
   <script src="js/main.js" defer></script>
+  <script src="js/recorrido.js" defer></script>
   <script>
     (function() {
       // try/catch: localStorage lanza en modo privado restringido o con cookies bloqueadas

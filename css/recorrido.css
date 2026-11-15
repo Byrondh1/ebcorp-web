@@ -1,0 +1,353 @@
+/* ============================================================
+   RECORRIDO — Hero de inicio con película controlada por scroll
+   Sin JS o con prefers-reduced-motion: las cuatro escenas apiladas,
+   cada una con su fotograma y su texto.
+   Con JS (clase .recorrido--activo): contenedor de 7 pantallas y un
+   escenario sticky de una pantalla donde el scroll avanza la película.
+   ============================================================ */
+
+.recorrido {
+  position: relative;
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+/* ---------- Bloques de texto (comunes a ambos modos) ---------- */
+.recorrido-texto {
+  max-width: 34rem;
+}
+
+.recorrido-etiqueta {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-cian);
+  margin: 0 0 var(--space-4);
+}
+
+.recorrido-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-white);
+  margin: 0 0 var(--space-4);
+}
+
+.recorrido p.recorrido-cuerpo {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
+}
+
+.recorrido-lista {
+  list-style: none;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.recorrido-lista li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.recorrido-lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.6rem;
+  height: 2px;
+  background: var(--color-cian);
+}
+
+/* Escena 0: logo vertical y textos alineados al mismo borde izquierdo */
+.recorrido-marca {
+  margin: 0 0 var(--space-5);
+}
+
+.recorrido-marca img {
+  display: block;
+  width: clamp(9rem, 16vw, 13rem);
+  height: auto;
+  /* el viewBox del logo deja 22 unidades a la izquierda de la E */
+  margin-left: calc(clamp(9rem, 16vw, 13rem) * -0.044);
+}
+
+.recorrido-marca-nombre {
+  font-family: var(--font-display);
+  font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-cian);
+  margin: 0 0 var(--space-4);
+}
+
+.recorrido-pista {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-8);
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.recorrido-pista svg {
+  width: 1rem;
+  height: 1rem;
+  animation: recorridoPista 1.8s ease-in-out infinite;
+}
+
+@keyframes recorridoPista {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+.recorrido-boton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  padding: 0.95rem 1.6rem;
+  border-radius: var(--radius-md, 10px);
+  background: var(--gradient-marca-texto);
+  color: var(--color-dark);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(8, 221, 240, 0.22);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.recorrido-boton:hover,
+.recorrido-boton:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(8, 221, 240, 0.32);
+  color: var(--color-dark);
+}
+
+.recorrido-boton:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   MODO ESTÁTICO (sin JS, o prefers-reduced-motion)
+   ============================================================ */
+.recorrido-medio,
+.recorrido-pasos {
+  display: none;
+}
+
+.recorrido-escena {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 96px 0 var(--space-12);
+  overflow-x: clip;
+}
+
+.recorrido-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recorrido-escena::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(13, 17, 23, 0.92) 0%, rgba(13, 17, 23, 0.7) 40%, rgba(13, 17, 23, 0.1) 75%);
+  z-index: 1;
+}
+
+.recorrido-escena > .container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* ============================================================
+   MODO PELÍCULA
+   ============================================================ */
+.recorrido--activo {
+  height: 700vh;
+  height: 700svh;
+}
+
+.recorrido--activo .recorrido-escenario {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden; /* el escenario recorta su propio contenido; no afecta al sticky */
+}
+
+.recorrido--activo .recorrido-medio {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.recorrido-poster,
+.recorrido-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recorrido-poster {
+  z-index: 1;
+  transition: opacity 400ms ease;
+}
+
+.recorrido-medio.is-listo .recorrido-poster {
+  opacity: 0;
+}
+
+.recorrido-velo {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(90deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.62) 38%, rgba(13, 17, 23, 0.08) 72%, rgba(13, 17, 23, 0) 100%);
+}
+
+.recorrido--activo .recorrido-escena {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  padding: 72px 0 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.recorrido--activo .recorrido-escena::before,
+.recorrido--activo .recorrido-foto {
+  display: none;
+}
+
+.recorrido--activo .recorrido-texto {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.recorrido--activo .recorrido-texto.is-visible {
+  pointer-events: auto;
+}
+
+.recorrido--activo .recorrido-lista li {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.recorrido--activo .recorrido-lista li.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Indicador de pasos, a la derecha */
+.recorrido--activo .recorrido-pasos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 3.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  list-style: none;
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: rgba(13, 17, 23, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.recorrido-pasos li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 300ms ease;
+}
+
+.recorrido-pasos li::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  transition: background 300ms ease, border-color 300ms ease, transform 300ms ease;
+}
+
+.recorrido-pasos li.is-actual {
+  color: var(--color-white);
+}
+
+.recorrido-pasos li.is-actual::after {
+  background: var(--color-cian);
+  border-color: var(--color-cian);
+  transform: scale(1.35);
+}
+
+/* ---------- Móvil: texto abajo, oscurecido de abajo hacia arriba ---------- */
+@media (max-width: 767px) {
+  .recorrido-escena {
+    align-items: flex-end;
+  }
+
+  .recorrido-escena::before {
+    background: linear-gradient(0deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.75) 45%, rgba(13, 17, 23, 0.1) 80%);
+  }
+
+  .recorrido-velo {
+    background: linear-gradient(0deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.78) 38%, rgba(13, 17, 23, 0.15) 68%, rgba(13, 17, 23, 0) 100%);
+  }
+
+  .recorrido--activo .recorrido-escena {
+    padding: 72px 0 var(--space-10);
+  }
+
+  .recorrido--activo .recorrido-pasos {
+    display: none;
+  }
+
+  .recorrido-titulo { font-size: 1.75rem; }
+  .recorrido-marca img { width: 7.5rem; margin-left: -0.33rem; }
+  .recorrido-pista { margin-top: var(--space-5); }
+  .recorrido-lista { gap: var(--space-2); margin-top: var(--space-4); }
+  .recorrido-boton { margin-top: var(--space-5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recorrido-pista svg { animation: none; }
+}
