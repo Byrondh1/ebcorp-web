@@ -471,6 +471,8 @@ p { line-height: 1.7; color: var(--color-gray-700); }
 
 .nav-links a:hover { color: var(--color-white); }
 .nav-links a:hover::after { width: 100%; }
+.nav-links a[aria-current="page"] { color: var(--color-white); }
+.nav-links a[aria-current="page"]::after { width: 100%; }
 
 .nav-actions {
   display: flex;
@@ -1646,6 +1648,11 @@ p { line-height: 1.7; color: var(--color-gray-700); }
 
 .footer-bottom .footer-bottom-contacto a { color: rgba(255,255,255,0.7); }
 .footer-bottom .footer-bottom-contacto a:hover { color: var(--color-white); }
+
+/* En móvil, que el botón flotante de WhatsApp no tape la última línea del pie */
+@media (max-width: 767px) {
+  .footer-bottom { padding-bottom: 76px; }
+}
 
 /* ============================================================
    17. WHATSAPP FLOATING BUTTON
