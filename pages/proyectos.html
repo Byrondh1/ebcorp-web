@@ -120,143 +120,92 @@
 
         <div class="projects-tabs" data-aos="fade-up" style="margin-bottom:3rem;">
           <button class="tab-btn active" data-tab="todos" aria-pressed="true">Todos</button>
-          <button class="tab-btn" data-tab="electrico" aria-pressed="false">Eléctrico</button>
-          <button class="tab-btn" data-tab="web" aria-pressed="false">Web</button>
-          <button class="tab-btn" data-tab="integral" aria-pressed="false">Integral</button>
+          <button class="tab-btn" data-tab="web" aria-pressed="false">Web y software</button>
+          <button class="tab-btn" data-tab="electrico" aria-pressed="false">Ingeniería eléctrica</button>
           <div class="tab-indicator" aria-hidden="true"></div>
         </div>
 
-        <div class="projects-page-grid" id="projectsGrid">
-
-          <div class="project-card" data-category="electrico" data-aos="fade-up">
-            <div class="project-img project-img-1" data-label="Instalación Industrial — 400A">
-              <div class="project-overlay"><span class="project-tag">Eléctrico</span></div>
+        <div class="proyectos-grupo" data-category="web">
+          <h2 class="proyectos-grupo-titulo">Desarrollo web y software</h2>
+          <div class="projects-page-grid">
+          <article class="project-card" data-category="web" data-aos="fade-up">
+            <div class="project-img project-img-2">
+              <svg class="project-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M6 6h1M17 6h1M6 17h1"/><path d="M14 14h3v3M21 14v3M14 21h3M20 20h1v1M17 17h4"/></svg>
+              <div class="project-overlay"><span class="project-tag">El Ángel · 2026</span></div>
             </div>
             <div class="project-info">
-              <h4>Instalación Industrial — Fábrica Textil</h4>
-              <p>Tablero de distribución 400A + instalación trifásica completa bajo normativa NEC. Incluye sistema de puesta a tierra y canalización industrial.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Quito Norte</span>
-                <span><i class="fas fa-calendar"></i> 2024</span>
-              </div>
+              <h3>Plataforma de Downhill Bellavista y Rodada Angeleña</h3>
+              <p>Sistema completo para dos eventos deportivos: inscripciones en línea, panel de administración, confirmación de pagos, comprobantes en PDF y registro de llegada con código QR.</p>
+              <ul class="project-tecnologias" aria-label="Tecnologías">
+                <li>Next.js</li>
+                <li>Supabase</li>
+                <li>Vercel</li>
+              </ul>
             </div>
-          </div>
+          </article>
 
-          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
-            <div class="project-img project-img-2" data-label="E-commerce — 500+ productos">
-              <div class="project-overlay"><span class="project-tag">Web</span></div>
+          <article class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-img project-img-4">
+              <svg class="project-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M10 2.5h4M12 2.5V6M18.4 7l1.6-1.6"/></svg>
+              <div class="project-overlay"><span class="project-tag">En desarrollo</span></div>
             </div>
             <div class="project-info">
-              <h4>E-commerce — Tienda Industrial</h4>
-              <p>Plataforma de ventas online con catálogo de +500 productos, filtros avanzados y pagos integrados con PayPhone.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Quito Sur</span>
-                <span><i class="fas fa-calendar"></i> 2024</span>
-              </div>
+              <h3>CRONO</h3>
+              <p>Cronometraje para eventos deportivos, downill, bmx, runing etc, con dos teléfonos, uno en la salida y otro en la meta. Funciona sin señal y sincroniza cuando vuelve la conexión.</p>
+              <ul class="project-tecnologias" aria-label="Tecnologías">
+                <li>Next.js</li>
+                <li>Supabase</li>
+                <li>PWA sin conexión</li>
+              </ul>
             </div>
-          </div>
+          </article>
 
-          <div class="project-card" data-category="electrico" data-aos="fade-up" data-aos-delay="200">
-            <div class="project-img project-img-3" data-label="UPS 80 kVA + ATS">
-              <div class="project-overlay"><span class="project-tag">Eléctrico</span></div>
+          <article class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-img project-img-dual">
+              <svg class="project-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 5.5h11.5v10H2z"/><path d="M13.5 9H17l3.5 3.5v3h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></svg>
+              <div class="project-overlay"><span class="project-tag">En desarrollo</span></div>
             </div>
             <div class="project-info">
-              <h4>Sistema de Respaldo — Centro Comercial</h4>
-              <p>UPS industrial 80 kVA + transferencia automática ATS para 3 pisos comerciales. Garantía de operación continua.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Valle de los Chillos</span>
-                <span><i class="fas fa-calendar"></i> 2023</span>
-              </div>
+              <h3>DistribuApp</h3>
+              <p>Gestión de distribución para negocios: administradores y vendedores trabajan en el mismo panel web, desde el computador o el teléfono.</p>
+              <ul class="project-tecnologias" aria-label="Tecnologías">
+                <li>Next.js</li>
+                <li>Expo</li>
+                <li>Supabase</li>
+              </ul>
             </div>
+          </article>
           </div>
-
-          <div class="project-card" data-category="web" data-aos="fade-up">
-            <div class="project-img project-img-4" data-label="Web Corporativa + SEO">
-              <div class="project-overlay"><span class="project-tag">Web</span></div>
-            </div>
-            <div class="project-info">
-              <h4>Web Corporativa — Constructora</h4>
-              <p>Sitio con galería de proyectos, formulario de cotización y SEO local optimizado. +40% de consultas en 3 meses.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Quito Centro</span>
-                <span><i class="fas fa-calendar"></i> 2025</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card" data-category="electrico" data-aos="fade-up" data-aos-delay="100">
-            <div class="project-img project-img-5" data-label="Auditoría Termográfica">
-              <div class="project-overlay"><span class="project-tag">Eléctrico</span></div>
-            </div>
-            <div class="project-info">
-              <h4>Auditoría Eléctrica — Planta Alimentaria</h4>
-              <p>Diagnóstico completo con termografía infrarroja + plan de mantenimiento preventivo anual. Reducción del 30% en fallas.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Sangolquí</span>
-                <span><i class="fas fa-calendar"></i> 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card project-card-dual" data-category="integral" data-aos="fade-up" data-aos-delay="200">
-            <div class="project-img project-img-dual" data-label="Eléctrico + Web — Proyecto integral">
-              <div class="project-overlay">
-                <span class="project-tag project-tag-dual">Integral</span>
-              </div>
-            </div>
-            <div class="project-info">
-              <h4>Proyecto Integral — Empresa Metalmecánica</h4>
-              <p>Modernización eléctrica completa (tableros MCC + instalación 3F) + nuevo sitio web con cotizador online. Un solo proveedor, dos soluciones.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Quito Industrial</span>
-                <span><i class="fas fa-star"></i> Proyecto estrella</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card" data-category="electrico" data-aos="fade-up">
-            <div class="project-img" style="background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-azul) 25%, var(--color-primary-dark)));">
-              <div class="project-overlay"><span class="project-tag">Eléctrico</span></div>
-            </div>
-            <div class="project-info">
-              <h4>Tablero MCC — Empresa Minera</h4>
-              <p>Diseño y ensamblaje de Motor Control Center 6 módulos con variadores de frecuencia y arrancadores suaves.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Pichincha</span>
-                <span><i class="fas fa-calendar"></i> 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
-            <div class="project-img" style="background: linear-gradient(135deg, #003A6E, #08DDF0, #003A6E);">
-              <div class="project-overlay"><span class="project-tag">Web</span></div>
-            </div>
-            <div class="project-info">
-              <h4>Landing Page — Clínica Estética</h4>
-              <p>Página de aterrizaje de alta conversión con agenda online, galería de tratamientos y chat de WhatsApp integrado.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Quito Norte</span>
-                <span><i class="fas fa-calendar"></i> 2025</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card" data-category="electrico" data-aos="fade-up" data-aos-delay="200">
-            <div class="project-img" style="background: linear-gradient(135deg, color-mix(in srgb, var(--color-azul) 25%, var(--color-primary-dark)), color-mix(in srgb, var(--color-azul) 25%, var(--color-primary-dark)), var(--color-primary));">
-              <div class="project-overlay"><span class="project-tag">Eléctrico</span></div>
-            </div>
-            <div class="project-info">
-              <h4>Adecuación Normativa — Edificio Corporativo</h4>
-              <p>Actualización completa del sistema eléctrico para cumplir normativa NEC + certificación para inspección municipal.</p>
-              <div class="project-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Centro de Quito</span>
-                <span><i class="fas fa-calendar"></i> 2023</span>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <div class="proyectos-grupo" data-category="electrico">
+          <h2 class="proyectos-grupo-titulo">Ingeniería eléctrica</h2>
+          <p class="proyectos-grupo-intro">Instalaciones en viviendas, negocios y fincas de El Ángel y San Gabriel.</p>
+          <div class="projects-page-grid">
+          <article class="project-card" data-category="electrico" data-aos="fade-up">
+            <div class="project-img project-img-1">
+              <svg class="project-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.6 5.2l12.6 3.4-1.4 5.3-12.6-3.4z"/><path d="M16.2 8.6l3.9 1-1 3.8-3.9-1"/><path d="M8 11.6l-1 3.9H4M4 13.3v6.2"/><circle cx="6.4" cy="7.5" r=".5" fill="currentColor"/></svg>
+              <div class="project-overlay"><span class="project-tag">Carchi</span></div>
+            </div>
+            <div class="project-info">
+              <h3>Videovigilancia para negocio</h3>
+              <p>Instalación de 5 cámaras de seguridad con grabador DVR y acceso desde el celular para ver el negocio en vivo desde cualquier lugar.</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="electrico" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-img project-img-3">
+              <svg class="project-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 21V10.5M21 21V10.5"/><path d="M3 12.5h18M3 19.5h18"/><path d="M7.5 12.5v7M12 12.5v7M16.5 12.5v7"/><path d="M9.6 6.4a3.4 3.4 0 0 1 4.8 0M7.5 4.3a6.4 6.4 0 0 1 9 0"/><circle cx="12" cy="8.6" r=".5" fill="currentColor"/></svg>
+              <div class="project-overlay"><span class="project-tag">Carchi</span></div>
+            </div>
+            <div class="project-info">
+              <h3>Cámaras y portón eléctrico para casa-finca</h3>
+              <p>Instalación de 2 cámaras con vista desde el celular y portón eléctrico que se abre de forma remota desde el teléfono.</p>
+            </div>
+          </article>
+          </div>
+        </div>
+
       </div>
     </section>
 

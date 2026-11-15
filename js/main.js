@@ -123,7 +123,8 @@
 ============================================================ */
 (function initTabFilter() {
   const tabs      = document.querySelectorAll('.tab-btn');
-  const cards     = document.querySelectorAll('.project-card, .blog-card');
+  // .proyectos-grupo: en proyectos.html se oculta el grupo entero (título, texto y tarjetas)
+  const cards     = document.querySelectorAll('.project-card, .blog-card, .proyectos-grupo');
   const indicator = document.querySelector('.tab-indicator');
   if (!tabs.length || !cards.length) return;
 

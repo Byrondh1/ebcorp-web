@@ -1243,6 +1243,7 @@ p { line-height: 1.7; color: var(--color-gray-700); }
   padding: var(--space-5) var(--space-6);
 }
 
+.project-info h3,
 .project-info h4 {
   font-size: var(--text-base);
   color: var(--color-gray-900);
