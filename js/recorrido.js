@@ -12,7 +12,6 @@
   var seccion = document.querySelector('.recorrido');
   if (!seccion) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (!window.fetch || !window.URL || !URL.createObjectURL) return;
 
   var P_MAX = 4.2;
   var DURACION = 19.9;
@@ -30,8 +29,8 @@
   // Paso del indicador según P (CIUDAD, SUBESTACIÓN, TRANSFORMADOR, DISEÑO)
   var INICIO_PASO = [0, 0.85, 1.9, 3.6];
 
-  var movil = window.matchMedia('(max-width: 767px)').matches;
-  var fuente = movil ? 'assets/video/film-720.mp4' : 'assets/video/film-1080.mp4';
+  // Un solo archivo para escritorio y móvil (1280×720, 7,9 MB)
+  var fuente = 'assets/video/film-720.mp4';
 
   var medio  = seccion.querySelector('.recorrido-medio');
   var video  = seccion.querySelector('.recorrido-video');
@@ -119,32 +118,26 @@
   video.addEventListener('seeked', buscar);
   actualizar();
 
-  // Carga completa del video como blob: así cualquier punto se puede buscar al instante
-  fetch(fuente)
-    .then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.blob();
-    })
-    .then(function (blob) {
-      video.muted = true;
-      video.playsInline = true;
-      video.preload = 'auto';
-      video.addEventListener('loadeddata', function alCargar() {
-        video.removeEventListener('loadeddata', alCargar);
-        listo = true;
-        buscar();
-        // Se quita el fotograma fijo cuando el video ya muestra el cuadro pedido
-        video.addEventListener('seeked', function alBuscar() {
-          video.removeEventListener('seeked', alBuscar);
-          medio.classList.add('is-listo');
-        });
-        if (!video.seeking && Math.abs(video.currentTime - tiempoObjetivo) <= 0.001) {
-          medio.classList.add('is-listo');
-        }
+  // El video se reproduce por streaming (moov al inicio con +faststart): en cuanto hay
+  // datos del primer cuadro se puede buscar; las zonas aún no descargadas se piden
+  // con peticiones de rango y el navegador sigue precargando el resto (preload auto).
+  video.addEventListener('loadeddata', function alCargar() {
+    video.removeEventListener('loadeddata', alCargar);
+    listo = true;
+    buscar();
+    // Se quita el fotograma fijo cuando el video ya muestra el cuadro pedido
+    if (!video.seeking && Math.abs(video.currentTime - tiempoObjetivo) <= 0.001) {
+      medio.classList.add('is-listo');
+    } else {
+      video.addEventListener('seeked', function alBuscar() {
+        video.removeEventListener('seeked', alBuscar);
+        medio.classList.add('is-listo');
       });
-      video.src = URL.createObjectURL(blob);
-    })
-    .catch(function () {
-      // Sin video: queda el fotograma de la escena 1 y los textos siguen funcionando
-    });
+    }
+  });
+  // Si el video no carga, queda el fotograma de la escena 1 y los textos siguen funcionando
+  video.muted = true;
+  video.playsInline = true;
+  video.preload = 'auto';
+  video.src = fuente;
 })();
