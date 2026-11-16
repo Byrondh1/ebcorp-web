@@ -203,4 +203,43 @@
     <priority>0.8</priority>
   </url>
 
+
+  <!-- Blog: artículos publicados el 2026-11-15 -->
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/como-elegir-empresa-desarrollo-web-ecuador.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/google-business-profile-empresas-ecuador.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/tablero-electrico-industrial-ecuador.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/pagina-web-barata-vs-profesional-ecuador.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/velocidad-carga-pagina-web-ecuador.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/puesta-a-tierra-industrial-ecuador.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
