@@ -95,9 +95,9 @@
   <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="../../css/pages.css" />
   <link rel="stylesheet" href="../../css/blog.css" />
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
   <meta name="theme-color" content="#1B242C">
 </head>
 <body>
@@ -106,18 +106,19 @@
   <header class="nav-header scrolled" id="navbar">
     <div class="container nav-container">
       <a href="../../index.html" class="nav-logo" aria-label="EB Corp — inicio">
-        <img src="../../assets/images/ebcorp-logo-blanco.svg" alt="EB Corp" height="34" width="171">
+        <img src="../../assets/images/ebcorp-isotipo-blanco.svg" alt="" height="34" width="60">
       </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="../../index.html#servicios">Servicios</a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="../servicios.html">Servicios</a>
         <a href="../proyectos.html">Proyectos</a>
+        <a href="../nosotros.html">Nosotros</a>
         <a href="../precios.html">Precios</a>
         <a href="../cotizador.html">Cotizador</a>
-        <a href="index.html">Blog</a>
+        <a href="index.html" aria-current="page">Blog</a>
         <a href="../contacto.html">Contacto</a>
       </nav>
       <div class="nav-actions">
-        <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20necesito%20mantenimiento%20para%20mi%20sitio%20web"
+        <a href="https://wa.me/593982856740?text=Hola%20EB%20Corp,%20necesito%20mantenimiento%20para%20mi%20sitio%20web"
            class="btn btn-whatsapp" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
@@ -168,7 +169,7 @@
             <div class="article-callout callout-warning">
               <i class="fas fa-exclamation-triangle"></i>
               <div>
-                <strong>Caso real:</strong> Un cliente llegó a EB Corp con su sitio WordPress hackeado — mostraba publicidad de casinos a sus clientes. Llevaba 3 semanas así sin que nadie lo detectara. El costo de recuperación fue 4 veces mayor que un año de mantenimiento preventivo.
+                <strong>Ejemplo:</strong> Un sitio WordPress hackeado puede mostrar publicidad de casinos a sus visitantes durante semanas sin que nadie lo detecte. Recuperarlo suele costar más que un año de mantenimiento preventivo.
               </div>
             </div>
 
@@ -177,7 +178,7 @@
 
             <h3>1. Infraestructura y hosting</h3>
             <ul>
-              <li>Hosting confiable con uptime garantizado (≥99.9%)</li>
+              <li>Hosting confiable con alta disponibilidad</li>
               <li>Renovación automática del dominio</li>
               <li>Certificado SSL activo y renovado (HTTPS)</li>
               <li>Monitoreo de disponibilidad 24/7 — alerta inmediata si el sitio cae</li>
@@ -367,7 +368,7 @@
               <h3>¿Tu sitio necesita mantenimiento?</h3>
               <p>En EB Corp ofrecemos planes de mantenimiento web desde $80/mes: hosting, seguridad, backups, actualizaciones y reporte mensual de tráfico. Sin contratos largos. Cotización gratuita en menos de 2 horas.</p>
               <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-                <a href="https://wa.me/593961699925?text=Hola%20EB%20Corp,%20necesito%20mantenimiento%20para%20mi%20sitio%20web"
+                <a href="https://wa.me/593982856740?text=Hola%20EB%20Corp,%20necesito%20mantenimiento%20para%20mi%20sitio%20web"
                    class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
                   <i class="fab fa-whatsapp"></i> Cotizar mantenimiento
                 </a>
@@ -398,7 +399,7 @@
               </div>
               <h4>Mantenimiento web desde $80/mes</h4>
               <p>Hosting, seguridad, backups y reporte mensual incluidos.</p>
-              <a href="https://wa.me/593961699925?text=Quiero%20mantenimiento%20para%20mi%20sitio%20web"
+              <a href="https://wa.me/593982856740?text=Quiero%20mantenimiento%20para%20mi%20sitio%20web"
                  class="btn btn-digital btn-lg" target="_blank" rel="noopener" style="width:100%; justify-content:center;">
                 <i class="fab fa-whatsapp"></i> Cotizar ahora
               </a>
@@ -478,15 +479,79 @@
     </article>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" aria-labelledby="footer-heading">
     <div class="container">
-      <div class="footer-bottom" style="border-top:none; padding-top:0; justify-content:center; gap:1rem;">
-        <p>&copy; 2026 EB Corp — <a href="../../index.html" style="color:rgba(255,255,255,0.4);">ebcorp.dev</a></p>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../index.html" class="nav-logo footer-logo" aria-label="EB Corp — inicio">
+            <img src="../../assets/images/ebcorp-logo-blanco.svg" alt="EB Corp" height="40" width="202">
+          </a>
+          <p>Electrical Business Corporation. Una empresa. Dos especialidades. Carchi e Imbabura, Ecuador.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/eb_corp1" target="_blank" rel="noopener" aria-label="Instagram de EB Corp">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/593982856740" target="_blank" rel="noopener" aria-label="WhatsApp de EB Corp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 id="footer-heading">Servicios</h3>
+          <ul>
+            <li><a href="../servicios-electricos.html">Ingeniería Eléctrica</a></li>
+            <li><a href="../desarrollo-web.html">Desarrollo Web</a></li>
+            <li><a href="../proyectos.html">Proyectos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Empresa</h3>
+          <ul>
+            <li><a href="../nosotros.html">Nosotros</a></li>
+            <li><a href="../precios.html">Precios</a></li>
+            <li><a href="../cotizador.html">Cotizador</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="../contacto.html">Contacto</a></li>
+            <li><a href="../terminos.html">Términos y condiciones</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contacto</h3>
+          <ul class="footer-contact">
+            <li>
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/593982856740" target="_blank" rel="noopener">+593 98 285 6740</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:contacto@ebcorp.dev">contacto@ebcorp.dev</a>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Carchi e Imbabura, Ecuador</span>
+            </li>
+            <li>
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/eb_corp1" target="_blank" rel="noopener">@eb_corp1</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EB Corp · Carchi, Ecuador</p>
+        <p class="footer-bottom-contacto">
+          <a href="tel:+593982856740">+593 98 285 6740</a>
+          <a href="mailto:contacto@ebcorp.dev">contacto@ebcorp.dev</a>
+        </p>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/593961699925" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <a href="https://wa.me/593982856740" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
     <span class="fab-tooltip">¿Necesitas ayuda?</span>
   </a>

@@ -32,9 +32,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/pages.css" />
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
   <meta name="theme-color" content="#1B242C">
 
   <style>
@@ -305,18 +305,19 @@
   <header class="nav-header scrolled" id="navbar">
     <div class="container nav-container">
       <a href="../index.html" class="nav-logo" aria-label="EB Corp — inicio">
-        <img src="../assets/images/ebcorp-logo-blanco.svg" alt="EB Corp" height="34" width="171">
+        <img src="../assets/images/ebcorp-isotipo-blanco.svg" alt="" height="34" width="60">
       </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="../index.html#servicios">Servicios</a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="servicios.html">Servicios</a>
         <a href="proyectos.html">Proyectos</a>
+        <a href="nosotros.html">Nosotros</a>
         <a href="precios.html">Precios</a>
-        <a href="cotizador.html" style="color:white;">Cotizador</a>
-        <a href="blog/">Blog</a>
+        <a href="cotizador.html" aria-current="page">Cotizador</a>
+        <a href="blog/index.html">Blog</a>
         <a href="contacto.html">Contacto</a>
       </nav>
       <div class="nav-actions">
-        <a href="https://wa.me/593961699925" class="btn btn-whatsapp" target="_blank" rel="noopener">
+        <a href="https://wa.me/593982856740" class="btn btn-whatsapp" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
@@ -451,7 +452,7 @@
                   <i class="fab fa-whatsapp"></i>
                   <span>
                     <strong>Solicitar cotización exacta</strong>
-                    <small>+593 961 699 925</small>
+                    <small>+593 98 285 6740</small>
                   </span>
                 </a>
                 <br />
@@ -467,10 +468,74 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" aria-labelledby="footer-heading">
     <div class="container">
-      <div class="footer-bottom" style="border-top:none; padding-top:0; justify-content:center; gap:1rem;">
-        <p>&copy; 2026 EB Corp — <a href="../index.html" style="color:rgba(255,255,255,0.4);">ebcorp.dev</a></p>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="nav-logo footer-logo" aria-label="EB Corp — inicio">
+            <img src="../assets/images/ebcorp-logo-blanco.svg" alt="EB Corp" height="40" width="202">
+          </a>
+          <p>Electrical Business Corporation. Una empresa. Dos especialidades. Carchi e Imbabura, Ecuador.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/eb_corp1" target="_blank" rel="noopener" aria-label="Instagram de EB Corp">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/593982856740" target="_blank" rel="noopener" aria-label="WhatsApp de EB Corp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 id="footer-heading">Servicios</h3>
+          <ul>
+            <li><a href="servicios-electricos.html">Ingeniería Eléctrica</a></li>
+            <li><a href="desarrollo-web.html">Desarrollo Web</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Empresa</h3>
+          <ul>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="precios.html">Precios</a></li>
+            <li><a href="cotizador.html">Cotizador</a></li>
+            <li><a href="blog/">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="terminos.html">Términos y condiciones</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contacto</h3>
+          <ul class="footer-contact">
+            <li>
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/593982856740" target="_blank" rel="noopener">+593 98 285 6740</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:contacto@ebcorp.dev">contacto@ebcorp.dev</a>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Carchi e Imbabura, Ecuador</span>
+            </li>
+            <li>
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/eb_corp1" target="_blank" rel="noopener">@eb_corp1</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EB Corp · Carchi, Ecuador</p>
+        <p class="footer-bottom-contacto">
+          <a href="tel:+593982856740">+593 98 285 6740</a>
+          <a href="mailto:contacto@ebcorp.dev">contacto@ebcorp.dev</a>
+        </p>
       </div>
     </div>
   </footer>
@@ -618,7 +683,7 @@
         (state.extras.length ? `Adicionales: ${state.extras.join(', ')}\n` : '') +
         `\nEstimado: $${min.toLocaleString()} – $${max.toLocaleString()} USD`
       );
-      document.getElementById('resultWhatsApp').href = `https://wa.me/593961699925?text=${msg}`;
+      document.getElementById('resultWhatsApp').href = `https://wa.me/593982856740?text=${msg}`;
 
       // Track event
       if (typeof gtag === 'function') {

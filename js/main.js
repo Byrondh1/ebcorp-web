@@ -7,73 +7,6 @@
 'use strict';
 
 /* ============================================================
-   HERO ENTRANCE — CSS transitions applied via JS on DOMContentLoaded
-============================================================ */
-document.addEventListener('DOMContentLoaded', function () {
-  var h1      = document.getElementById('hero-heading');
-  var tagline = document.querySelector('.hero-content > p:not(.hero-sub)');
-  var sub     = document.querySelector('.hero-sub');
-  var cta     = document.querySelector('.hero-cta-group');
-
-  function animateIn(el, delay, transition, to) {
-    if (!el) return;
-    setTimeout(function () {
-      el.style.transition = transition;
-      Object.assign(el.style, to);
-    }, delay);
-  }
-
-  // 1. h1: translateY(30px→0) + opacity 0→1, 600ms, delay 100ms
-  animateIn(h1, 100,
-    'opacity 600ms ease-out, transform 600ms ease-out',
-    { opacity: '1', transform: 'translateY(0)' }
-  );
-
-  // 2. tagline: typewriter effect — letras una por una cada 55ms, delay 500ms
-  (function typewriter() {
-    if (!tagline) return;
-    var fullText = tagline.textContent.trim();
-    tagline.textContent = '';
-
-    var cursor = document.createElement('span');
-    cursor.className = 'typewriter-cursor';
-    cursor.textContent = '|';
-    tagline.appendChild(cursor);
-
-    setTimeout(function () {
-      tagline.style.transition = 'opacity 200ms ease';
-      tagline.style.opacity = '1';
-
-      var i = 0;
-      var interval = setInterval(function () {
-        if (i < fullText.length) {
-          tagline.insertBefore(document.createTextNode(fullText[i]), cursor);
-          i++;
-        } else {
-          clearInterval(interval);
-          setTimeout(function () {
-            cursor.style.animation = 'none';
-            cursor.style.opacity = '0';
-          }, 800);
-        }
-      }, 55);
-    }, 500);
-  })();
-
-  // 3. hero-sub: translateY(15px→0) + opacity 0→1, 500ms, delay 700ms
-  animateIn(sub, 700,
-    'opacity 500ms ease-out, transform 500ms ease-out',
-    { opacity: '1', transform: 'translateY(0)' }
-  );
-
-  // 4. cta-group: scale(0.95→1) + opacity 0→1, 400ms, delay 950ms
-  animateIn(cta, 950,
-    'opacity 400ms ease-out, transform 400ms ease-out',
-    { opacity: '1', transform: 'scale(1)' }
-  );
-});
-
-/* ============================================================
    NAVIGATION — Scroll behavior + mobile toggle
 ============================================================ */
 (function initNav() {
@@ -190,7 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
 ============================================================ */
 (function initTabFilter() {
   const tabs      = document.querySelectorAll('.tab-btn');
-  const cards     = document.querySelectorAll('.project-card, .blog-card');
+  // .proyectos-grupo: en proyectos.html se oculta el grupo entero (título, texto y tarjetas)
+  const cards     = document.querySelectorAll('.project-card, .blog-card, .proyectos-grupo');
   const indicator = document.querySelector('.tab-indicator');
   if (!tabs.length || !cards.length) return;
 
@@ -258,47 +192,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-})();
-
-/* ============================================================
-   HERO PARTICLES — Floating dot particles background
-============================================================ */
-(function initParticles() {
-  const container = document.getElementById('heroParticles');
-  if (!container) return;
-
-  // Skip on mobile for performance
-  if (window.matchMedia('(max-width: 768px)').matches) return;
-
-  const COUNT = 30;
-  const fragment = document.createDocumentFragment();
-
-  for (let i = 0; i < COUNT; i++) {
-    const dot = document.createElement('div');
-    const size = Math.random() * 3 + 1;
-    const x    = Math.random() * 100;
-    const y    = Math.random() * 100;
-    const dur  = Math.random() * 6 + 4;
-    const del  = Math.random() * 4;
-    const op   = Math.random() * 0.3 + 0.05;
-
-    Object.assign(dot.style, {
-      position:        'absolute',
-      width:           `${size}px`,
-      height:          `${size}px`,
-      borderRadius:    '50%',
-      left:            `${x}%`,
-      top:             `${y}%`,
-      background:      i % 3 === 0 ? '#027DFE' : '#08DDF0',
-      opacity:         op,
-      animation:       `floatY ${dur}s ease-in-out ${del}s infinite`,
-      pointerEvents:   'none',
-    });
-
-    fragment.appendChild(dot);
-  }
-
-  container.appendChild(fragment);
 })();
 
 /* ============================================================
