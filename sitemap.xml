@@ -204,6 +204,14 @@
   </url>
 
 
+  <!-- Blog: artículo publicado el 2026-11-17 -->
+  <url>
+    <loc>https://ebcorp.dev/pages/blog/instalacion-camaras-seguridad-tulcan.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Blog: artículos publicados el 2026-11-15 -->
   <url>
     <loc>https://ebcorp.dev/pages/blog/como-elegir-empresa-desarrollo-web-ecuador.html</loc>
